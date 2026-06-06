@@ -400,37 +400,37 @@ export default function Home() {
           />
           <div className="absolute inset-0 bg-gradient-to-b from-[rgba(18,23,23,0.05)] via-[rgba(18,23,23,0.15)] to-[rgba(18,23,23,0.55)]" />
 
-          <div className="relative z-10 w-full max-w-[1400px] mx-auto px-5 md:px-[6vw] pb-6 md:pb-12">
-            {/* Title — overflow hidden wrapper for slide-up */}
-            <div className="overflow-hidden hero-title-wrap">
-              <h1 className="hero-title font-[family-name:var(--font-serif)] text-[clamp(100px,22vw,320px)] font-normal uppercase tracking-[-0.04em] leading-[0.82] text-white">
-                MGL
-              </h1>
-            </div>
+          {/* Hero content — Elyse layout: giant title bottom-left, subtitle+desc to the right at baseline */}
+          <div className="relative z-10 w-full px-5 md:px-10 lg:px-12 pb-8 md:pb-14">
+            <div className="flex items-end gap-6 md:gap-10 flex-wrap">
+              {/* Giant title — fills most of the viewport width */}
+              <div className="overflow-hidden hero-title-wrap shrink-0">
+                <h1 className="hero-title font-[family-name:var(--font-serif)] text-[clamp(120px,25vw,380px)] font-normal uppercase tracking-[-0.03em] leading-[0.82] text-white">
+                  MGL
+                </h1>
+              </div>
 
-            {/* Subtitle — italic serif */}
-            <div className="hero-subtitle mt-4">
-              <p className="font-[family-name:var(--font-glare)] italic text-[18px] text-[rgba(255,255,255,0.85)]">
-                The Address of Tomorrow
-              </p>
+              {/* Right side — subtitle + description, baseline-aligned with title */}
+              <div className="pb-[0.5em] md:pb-[1em] max-w-[380px]">
+                <div className="hero-subtitle">
+                  <p className="font-[family-name:var(--font-glare)] italic text-[clamp(14px,1.4vw,20px)] uppercase tracking-[0.02em] leading-snug text-white/90">
+                    Holistic Living<br />In Perfect Harmony
+                  </p>
+                </div>
+                <div className="hero-desc mt-5">
+                  <p className="font-[family-name:var(--font-inter)] text-[clamp(12px,1vw,15px)] font-normal leading-[1.7] text-white/60">
+                    Welcome to MGL Realtech, where purposeful design and
+                    community-focused development converge to create
+                    an unparalleled standard of North NCR living.
+                  </p>
+                </div>
+                <div className="hero-desc mt-5">
+                  <p className="font-[family-name:var(--font-serif)] text-[11px] uppercase tracking-[0.15em] text-white/70 cursor-pointer hover:text-white transition-colors">
+                    Scroll
+                  </p>
+                </div>
+              </div>
             </div>
-
-            {/* Description */}
-            <div className="hero-desc mt-6 max-w-[540px]">
-              <p className="font-[family-name:var(--font-inter)] text-[16px] font-normal leading-relaxed text-[rgba(255,255,255,0.6)]">
-                Crafting North NCR&apos;s next landmark addresses. 10 projects
-                delivered. 500+ families settled. Now building Mystical Meadows,
-                a 150-acre golf township.
-              </p>
-            </div>
-          </div>
-
-          {/* Scroll indicator */}
-          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-3 animate-bounce-gentle">
-            <span className="text-[10px] tracking-[0.25em] uppercase text-[rgba(255,255,255,0.4)]">
-              Scroll
-            </span>
-            <div className="w-px h-10 bg-[rgba(255,255,255,0.3)]" />
           </div>
         </section>
 
