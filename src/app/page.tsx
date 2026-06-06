@@ -311,7 +311,7 @@ export default function Home() {
               <a
                 key={link.label}
                 href={link.href}
-                className="nav-link-underline relative text-[12px] tracking-[0.14em] uppercase font-normal text-white transition-colors duration-300"
+                className="nav-link-underline relative font-[family-name:var(--font-serif)] text-[11px] tracking-[0.02em] uppercase font-normal text-white transition-colors duration-300"
               >
                 {link.label}
               </a>
@@ -343,6 +343,8 @@ export default function Home() {
             />
           </button>
         </nav>
+        {/* Nav line — full width thin line like Elyse */}
+        <div className="absolute bottom-0 left-0 w-full h-px bg-white/20 transition-opacity duration-500" style={{ opacity: scrolled ? 0 : 1 }} />
       </header>
 
       {/* ── Mobile menu overlay ────────────────────────────── */}
@@ -396,12 +398,12 @@ export default function Home() {
             className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[rgba(18,23,23,0.2)] via-[rgba(18,23,23,0.4)] to-[rgba(18,23,23,0.75)]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[rgba(18,23,23,0.05)] via-[rgba(18,23,23,0.15)] to-[rgba(18,23,23,0.55)]" />
 
-          <div className="relative z-10 w-full max-w-[1400px] mx-auto px-5 md:px-[6vw] pb-12 md:pb-24">
+          <div className="relative z-10 w-full max-w-[1400px] mx-auto px-5 md:px-[6vw] pb-6 md:pb-12">
             {/* Title — overflow hidden wrapper for slide-up */}
             <div className="overflow-hidden hero-title-wrap">
-              <h1 className="hero-title font-[family-name:var(--font-serif)] text-[clamp(80px,15vw,240px)] font-light uppercase tracking-[-0.02em] leading-[0.86] text-white">
+              <h1 className="hero-title font-[family-name:var(--font-serif)] text-[clamp(100px,22vw,320px)] font-normal uppercase tracking-[-0.04em] leading-[0.82] text-white">
                 MGL
               </h1>
             </div>
@@ -441,7 +443,7 @@ export default function Home() {
                 (About)
               </p>
               {/* Heading */}
-              <h2 className="gsap-reveal font-[family-name:var(--font-serif)] text-[clamp(28px,4vw,56px)] font-light uppercase tracking-[0.04em] leading-[1.1] text-white">
+              <h2 className="gsap-reveal font-[family-name:var(--font-serif)] text-[clamp(28px,4vw,56px)] font-normal uppercase tracking-[0.04em] leading-[1.1] text-white">
                 Building with purpose
                 <br />
                 since 2017
@@ -512,7 +514,7 @@ export default function Home() {
             {/* Project title + status */}
             <div className="gsap-reveal mb-8 md:mb-12">
               <div className="flex flex-col md:flex-row md:items-baseline gap-3 md:gap-6">
-                <h2 className="font-[family-name:var(--font-serif)] text-[clamp(28px,4vw,56px)] font-light uppercase tracking-[0.04em] leading-[1.1] text-white transition-opacity duration-300">
+                <h2 className="font-[family-name:var(--font-serif)] text-[clamp(28px,4vw,56px)] font-normal uppercase tracking-[0.04em] leading-[1.1] text-white transition-opacity duration-300">
                   {PROJECTS[activeProject].title}
                 </h2>
                 <span
@@ -592,7 +594,7 @@ export default function Home() {
             <p className="gsap-reveal font-[family-name:var(--font-glare)] italic text-[16px] text-[rgba(255,255,255,0.7)] mb-6">
               (Our Beliefs)
             </p>
-            <h2 className="gsap-reveal font-[family-name:var(--font-serif)] text-[clamp(28px,4vw,56px)] font-light uppercase tracking-[0.04em] leading-[1.1] text-white mb-4">
+            <h2 className="gsap-reveal font-[family-name:var(--font-serif)] text-[clamp(28px,4vw,56px)] font-normal uppercase tracking-[0.04em] leading-[1.1] text-white mb-4">
               Built on conviction,
               <br className="hidden md:block" /> not convention
             </h2>
@@ -614,7 +616,7 @@ export default function Home() {
                     <p className="font-[family-name:var(--font-serif)] text-[14px] font-normal text-[rgba(255,255,255,0.5)] mb-4">
                       ( {i + 1} )
                     </p>
-                    <h3 className="font-[family-name:var(--font-serif)] text-[26px] font-light uppercase tracking-[0.02em] leading-tight text-white mb-3">
+                    <h3 className="font-[family-name:var(--font-serif)] text-[26px] font-normal uppercase tracking-[0.02em] leading-tight text-white mb-3">
                       {b.title}
                     </h3>
                     <p className="font-[family-name:var(--font-inter)] text-[15px] font-normal text-[rgba(255,255,255,0.55)] leading-relaxed">
@@ -634,7 +636,7 @@ export default function Home() {
             <p className="gsap-reveal font-[family-name:var(--font-glare)] italic text-[16px] text-[rgba(255,255,255,0.7)] mb-6">
               (Amenities)
             </p>
-            <h2 className="gsap-reveal font-[family-name:var(--font-serif)] text-[clamp(28px,4vw,56px)] font-light uppercase tracking-[0.04em] leading-[1.1] text-white mb-10 lg:mb-14">
+            <h2 className="gsap-reveal font-[family-name:var(--font-serif)] text-[clamp(28px,4vw,56px)] font-normal uppercase tracking-[0.04em] leading-[1.1] text-white mb-10 lg:mb-14">
               Designed for living
             </h2>
 
@@ -687,7 +689,7 @@ export default function Home() {
                   ))}
                 </div>
                 <div className="flex flex-col justify-end pb-4 lg:pb-5">
-                  <h3 className="font-[family-name:var(--font-serif)] text-[clamp(24px,2.5vw,32px)] font-light uppercase tracking-[0.02em] text-white mb-4 transition-opacity duration-500">
+                  <h3 className="font-[family-name:var(--font-serif)] text-[clamp(24px,2.5vw,32px)] font-normal uppercase tracking-[0.02em] text-white mb-4 transition-opacity duration-500">
                     {AMENITIES[activeAmenity].title}
                   </h3>
                   <p className="font-[family-name:var(--font-inter)] text-[16px] font-normal leading-[1.75] text-[rgba(255,255,255,0.65)] transition-opacity duration-500">
@@ -706,7 +708,7 @@ export default function Home() {
             <p className="gsap-reveal font-[family-name:var(--font-glare)] italic text-[16px] text-[rgba(255,255,255,0.7)] mb-6">
               (FAQ)
             </p>
-            <h2 className="gsap-reveal font-[family-name:var(--font-serif)] text-[clamp(28px,4vw,56px)] font-light uppercase tracking-[0.04em] leading-[1.1] text-white mb-12 lg:mb-16">
+            <h2 className="gsap-reveal font-[family-name:var(--font-serif)] text-[clamp(28px,4vw,56px)] font-normal uppercase tracking-[0.04em] leading-[1.1] text-white mb-12 lg:mb-16">
               Your questions, answered
             </h2>
 
@@ -724,7 +726,7 @@ export default function Home() {
                     <span className="font-[family-name:var(--font-serif)] text-[14px] text-[rgba(255,255,255,0.4)] font-normal shrink-0 w-10 md:w-12">
                       ( {i + 1} )
                     </span>
-                    <span className="font-[family-name:var(--font-serif)] text-lg md:text-[22px] font-light uppercase tracking-[0.02em] flex-1 text-white">
+                    <span className="font-[family-name:var(--font-serif)] text-lg md:text-[22px] font-normal uppercase tracking-[0.02em] flex-1 text-white">
                       {f.q}
                     </span>
                     <span
@@ -772,7 +774,7 @@ export default function Home() {
               <p className="gsap-reveal font-[family-name:var(--font-glare)] italic text-[16px] text-[rgba(255,255,255,0.7)] mb-6">
                 (Get in Touch)
               </p>
-              <h2 className="gsap-reveal font-[family-name:var(--font-serif)] text-[clamp(28px,4vw,56px)] font-light uppercase tracking-[0.04em] leading-[1.1] text-white">
+              <h2 className="gsap-reveal font-[family-name:var(--font-serif)] text-[clamp(28px,4vw,56px)] font-normal uppercase tracking-[0.04em] leading-[1.1] text-white">
                 Visit Our Sites
                 <br />
                 in Kharkhoda
@@ -785,7 +787,7 @@ export default function Home() {
             </div>
 
             <div className="gsap-reveal bg-[rgba(255,255,255,0.04)] backdrop-blur-xl border border-[rgba(255,255,255,0.08)] rounded-lg p-6 md:p-8 lg:p-10">
-              <h3 className="font-[family-name:var(--font-serif)] text-[26px] font-light uppercase tracking-[0.02em] text-white">
+              <h3 className="font-[family-name:var(--font-serif)] text-[26px] font-normal uppercase tracking-[0.02em] text-white">
                 Connect With Us
               </h3>
               <p className="font-[family-name:var(--font-inter)] text-[14px] text-[rgba(255,255,255,0.5)] mt-1 mb-8">
