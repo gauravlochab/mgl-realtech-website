@@ -307,7 +307,7 @@ export default function Home() {
               <a
                 key={link.label}
                 href={link.href}
-                className="nav-link-underline relative font-[family-name:var(--font-serif)] text-[10.5px] tracking-[0.04em] uppercase font-normal text-white/90 hover:text-white transition-colors duration-300"
+                className="nav-link-underline relative font-[family-name:var(--font-serif)] text-[10.5px] tracking-[0.04em] uppercase font-normal text-white/70 hover:text-white transition-colors duration-300"
               >
                 {link.label}
               </a>
@@ -413,7 +413,7 @@ export default function Home() {
           {/* Subtitle + description — positioned above the title on the right side */}
           <div className="absolute right-5 md:right-10 lg:right-12 z-20 max-w-[280px] lg:max-w-[320px] bottom-[clamp(80px,10vw,180px)]">
             <div className="hero-subtitle">
-              <p className="font-[family-name:var(--font-glare)] italic text-[clamp(14px,1.4vw,20px)] uppercase tracking-[0.02em] leading-snug text-white/90">
+              <p className="font-[family-name:var(--font-glare)] italic text-[clamp(14px,1.4vw,20px)] uppercase tracking-[0.02em] leading-snug text-white/70">
                 Holistic Living<br />In Perfect Harmony
               </p>
             </div>
@@ -441,7 +441,7 @@ export default function Home() {
                 (About)
               </p>
               {/* Heading */}
-              <h2 className="gsap-reveal font-[family-name:var(--font-serif)] text-[clamp(28px,4vw,56px)] font-normal uppercase tracking-[0.04em] leading-[1.1] text-white">
+              <h2 className="gsap-reveal font-[family-name:var(--font-glare)] text-[clamp(28px,4vw,56px)] font-normal uppercase tracking-[-0.03em] italic leading-[1.1] text-white">
                 Building with purpose
                 <br />
                 since 2017
@@ -459,14 +459,14 @@ export default function Home() {
               </div>
             </div>
             <div className="lg:pt-20">
-              <p className="gsap-reveal font-[family-name:var(--font-inter)] text-[18px] font-normal leading-[1.75] text-[rgba(255,255,255,0.65)] tracking-[0.01em]">
+              <p className="gsap-reveal font-[family-name:var(--font-inter)] text-[18px] font-light leading-[1.75] text-[rgba(255,255,255,0.65)] tracking-[0.01em]">
                 MGL Realtech started in 2017 with a single conviction: the
                 Kharkhoda-Sonipat corridor would become North NCR&apos;s next
                 growth frontier. While bigger names chased Gurugram and Noida, we
                 committed to this belt, buying land, building roads, delivering
                 plots.
               </p>
-              <p className="gsap-reveal font-[family-name:var(--font-inter)] text-[18px] font-normal leading-[1.75] text-[rgba(255,255,255,0.65)] tracking-[0.01em] mt-6">
+              <p className="gsap-reveal font-[family-name:var(--font-inter)] text-[18px] font-light leading-[1.75] text-[rgba(255,255,255,0.65)] tracking-[0.01em] mt-6">
                 Ten projects and 500+ families later, the KMP Expressway and
                 NH-344P have validated that bet. Now we&apos;re building Mystical
                 Meadows, a 150-acre golf township that will anchor this
@@ -512,7 +512,7 @@ export default function Home() {
             {/* Project title + status */}
             <div className="gsap-reveal mb-8 md:mb-12">
               <div className="flex flex-col md:flex-row md:items-baseline gap-3 md:gap-6">
-                <h2 className="font-[family-name:var(--font-serif)] text-[clamp(28px,4vw,56px)] font-normal uppercase tracking-[0.04em] leading-[1.1] text-white transition-opacity duration-300">
+                <h2 className="font-[family-name:var(--font-glare)] text-[clamp(28px,4vw,56px)] font-normal uppercase tracking-[-0.03em] italic leading-[1.1] text-white transition-opacity duration-300">
                   {PROJECTS[activeProject].title}
                 </h2>
                 <span
@@ -552,7 +552,7 @@ export default function Home() {
                 ))}
               </div>
               <div>
-                <p className="gsap-reveal font-[family-name:var(--font-inter)] text-[16px] font-normal leading-[1.75] text-[rgba(255,255,255,0.65)] transition-opacity duration-500">
+                <p className="gsap-reveal font-[family-name:var(--font-inter)] text-[16px] font-light leading-[1.75] text-[rgba(255,255,255,0.65)] transition-opacity duration-500">
                   {PROJECTS[activeProject].desc}
                 </p>
                 <div className="flex gap-3 mt-8">
@@ -592,11 +592,11 @@ export default function Home() {
             <p className="gsap-reveal font-[family-name:var(--font-glare)] italic text-[16px] text-[rgba(255,255,255,0.7)] mb-6">
               (Our Beliefs)
             </p>
-            <h2 className="gsap-reveal font-[family-name:var(--font-serif)] text-[clamp(28px,4vw,56px)] font-normal uppercase tracking-[0.04em] leading-[1.1] text-white mb-4">
+            <h2 className="gsap-reveal font-[family-name:var(--font-glare)] text-[clamp(28px,4vw,56px)] font-normal uppercase tracking-[-0.03em] italic leading-[1.1] text-white mb-4">
               Built on conviction,
               <br className="hidden md:block" /> not convention
             </h2>
-            <p className="gsap-reveal font-[family-name:var(--font-inter)] text-[16px] font-normal leading-[1.75] text-[rgba(255,255,255,0.65)] max-w-[600px] mb-14 lg:mb-16">
+            <p className="gsap-reveal font-[family-name:var(--font-inter)] text-[16px] font-light leading-[1.75] text-[rgba(255,255,255,0.65)] max-w-[600px] mb-14 lg:mb-16">
               Five principles that have guided every land purchase, every
               foundation pour, and every handover since 2017.
             </p>
@@ -634,7 +634,7 @@ export default function Home() {
             <p className="gsap-reveal font-[family-name:var(--font-glare)] italic text-[16px] text-[rgba(255,255,255,0.7)] mb-6">
               (Amenities)
             </p>
-            <h2 className="gsap-reveal font-[family-name:var(--font-serif)] text-[clamp(28px,4vw,56px)] font-normal uppercase tracking-[0.04em] leading-[1.1] text-white mb-10 lg:mb-14">
+            <h2 className="gsap-reveal font-[family-name:var(--font-glare)] text-[clamp(28px,4vw,56px)] font-normal uppercase tracking-[-0.03em] italic leading-[1.1] text-white mb-10 lg:mb-14">
               Designed for living
             </h2>
 
@@ -690,7 +690,7 @@ export default function Home() {
                   <h3 className="font-[family-name:var(--font-serif)] text-[clamp(24px,2.5vw,32px)] font-normal uppercase tracking-[0.02em] text-white mb-4 transition-opacity duration-500">
                     {AMENITIES[activeAmenity].title}
                   </h3>
-                  <p className="font-[family-name:var(--font-inter)] text-[16px] font-normal leading-[1.75] text-[rgba(255,255,255,0.65)] transition-opacity duration-500">
+                  <p className="font-[family-name:var(--font-inter)] text-[16px] font-light leading-[1.75] text-[rgba(255,255,255,0.65)] transition-opacity duration-500">
                     {AMENITIES[activeAmenity].desc}
                   </p>
                 </div>
@@ -706,7 +706,7 @@ export default function Home() {
             <p className="gsap-reveal font-[family-name:var(--font-glare)] italic text-[16px] text-[rgba(255,255,255,0.7)] mb-6">
               (FAQ)
             </p>
-            <h2 className="gsap-reveal font-[family-name:var(--font-serif)] text-[clamp(28px,4vw,56px)] font-normal uppercase tracking-[0.04em] leading-[1.1] text-white mb-12 lg:mb-16">
+            <h2 className="gsap-reveal font-[family-name:var(--font-glare)] text-[clamp(28px,4vw,56px)] font-normal uppercase tracking-[-0.03em] italic leading-[1.1] text-white mb-12 lg:mb-16">
               Your questions, answered
             </h2>
 
@@ -724,7 +724,7 @@ export default function Home() {
                     <span className="font-[family-name:var(--font-serif)] text-[14px] text-[rgba(255,255,255,0.4)] font-normal shrink-0 w-10 md:w-12">
                       ( {i + 1} )
                     </span>
-                    <span className="font-[family-name:var(--font-serif)] text-lg md:text-[22px] font-normal uppercase tracking-[0.02em] flex-1 text-white">
+                    <span className="font-[family-name:var(--font-glare)] text-lg md:text-[19px] font-normal uppercase italic tracking-[0.02em] flex-1 text-white">
                       {f.q}
                     </span>
                     <span
@@ -742,7 +742,7 @@ export default function Home() {
                         : "max-h-0 opacity-0"
                     }`}
                   >
-                    <p className="font-[family-name:var(--font-inter)] text-[16px] font-normal leading-[1.75] text-[rgba(255,255,255,0.55)] pb-6 lg:pb-8 pl-10 md:pl-16 max-w-[600px]">
+                    <p className="font-[family-name:var(--font-inter)] text-[16px] font-light leading-[1.75] text-[rgba(255,255,255,0.55)] pb-6 lg:pb-8 pl-10 md:pl-16 max-w-[600px]">
                       {f.a}
                     </p>
                   </div>
@@ -772,12 +772,12 @@ export default function Home() {
               <p className="gsap-reveal font-[family-name:var(--font-glare)] italic text-[16px] text-[rgba(255,255,255,0.7)] mb-6">
                 (Get in Touch)
               </p>
-              <h2 className="gsap-reveal font-[family-name:var(--font-serif)] text-[clamp(28px,4vw,56px)] font-normal uppercase tracking-[0.04em] leading-[1.1] text-white">
+              <h2 className="gsap-reveal font-[family-name:var(--font-glare)] text-[clamp(28px,4vw,56px)] font-normal uppercase tracking-[-0.03em] italic leading-[1.1] text-white">
                 Visit Our Sites
                 <br />
                 in Kharkhoda
               </h2>
-              <p className="gsap-reveal font-[family-name:var(--font-inter)] text-[16px] font-normal leading-[1.75] text-[rgba(255,255,255,0.6)] max-w-[440px] mt-8">
+              <p className="gsap-reveal font-[family-name:var(--font-inter)] text-[16px] font-light leading-[1.75] text-[rgba(255,255,255,0.6)] max-w-[440px] mt-8">
                 See the land, walk the roads, meet the families who already live
                 here. We arrange complimentary site visits every weekend, pick-up
                 from Sonipat or Delhi.
@@ -886,23 +886,23 @@ export default function Home() {
               </p>
             </div>
             <div>
-              <p className="font-[family-name:var(--font-inter)] text-[16px] font-normal leading-snug text-white">
+              <p className="font-[family-name:var(--font-inter)] text-[16px] font-light leading-snug text-white">
                 NH 344P, Kharkhoda
               </p>
-              <p className="font-[family-name:var(--font-inter)] text-[16px] font-normal text-[rgba(255,255,255,0.6)]">
+              <p className="font-[family-name:var(--font-inter)] text-[16px] font-light text-[rgba(255,255,255,0.6)]">
                 Sonipat, Haryana, India
               </p>
             </div>
             <div>
               <a
                 href="mailto:info@mglrealtech.com"
-                className="block font-[family-name:var(--font-inter)] text-[16px] font-normal text-[rgba(255,255,255,0.8)] hover:text-white transition-colors duration-300"
+                className="block font-[family-name:var(--font-inter)] text-[16px] font-light text-[rgba(255,255,255,0.8)] hover:text-white transition-colors duration-300"
               >
                 info@mglrealtech.com
               </a>
               <a
                 href="tel:+916361618181"
-                className="block font-[family-name:var(--font-inter)] text-[16px] font-normal text-[rgba(255,255,255,0.8)] hover:text-white transition-colors duration-300 mt-1"
+                className="block font-[family-name:var(--font-inter)] text-[16px] font-light text-[rgba(255,255,255,0.8)] hover:text-white transition-colors duration-300 mt-1"
               >
                 +91-6361618181
               </a>
