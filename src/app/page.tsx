@@ -15,9 +15,9 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 // ── Data ──────────────────────────────────────────────────────
 
 const NAV_LINKS = [
-  { label: "Projects", href: "#projects" },
-  { label: "About", href: "#about" },
-  { label: "Contact", href: "#contact" },
+  { label: "MGL Greens", href: "#projects" },
+  { label: "Mystical Meadows", href: "#projects" },
+  { label: "MGL Vantage", href: "#projects" },
 ];
 
 const PROJECTS = [
@@ -178,11 +178,7 @@ export default function Home() {
         { opacity: 0, y: 30, duration: 1, ease: "power3.out" },
         "-=0.6"
       )
-      .from(
-        ".site-nav",
-        { opacity: 0, yPercent: -100, duration: 0.8, ease: "power3.out" },
-        "-=1"
-      );
+      // Nav stays visible — no animation that hides it
 
     // === SCROLL REVEALS — every section ===
     gsap.utils.toArray<HTMLElement>(".gsap-reveal").forEach((el) => {
