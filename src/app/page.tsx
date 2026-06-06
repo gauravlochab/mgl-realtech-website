@@ -411,7 +411,7 @@ export default function Home() {
           </div>
 
           {/* Subtitle + description — positioned above the title on the right side */}
-          <div className="absolute right-5 md:right-10 lg:right-12 z-20 max-w-[280px] lg:max-w-[320px] bottom-[clamp(100px,12vw,200px)]">
+          <div className="absolute right-5 md:right-10 lg:right-12 z-20 max-w-[280px] lg:max-w-[320px] bottom-[clamp(140px,16vw,280px)]">
             <div className="hero-subtitle">
               <p className="font-[family-name:var(--font-glare)] italic text-[clamp(14px,1.4vw,20px)] uppercase tracking-[0.02em] leading-snug text-white/90">
                 Holistic Living<br />In Perfect Harmony
