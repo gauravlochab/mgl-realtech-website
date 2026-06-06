@@ -397,17 +397,17 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-b from-[rgba(18,23,23,0.05)] via-[rgba(18,23,23,0.15)] to-[rgba(18,23,23,0.55)]" />
 
           {/* Hero content — title fills bottom edge-to-edge, subtitle overlays bottom-right */}
-          <div className="relative z-10 w-full px-5 md:px-10 lg:px-12 pb-0">
-            {/* Giant title — spans full width at the very bottom */}
-            <div className="overflow-hidden hero-title-wrap">
+          <div className="relative z-10 w-full pb-8 md:pb-12">
+            {/* Giant title — centered at the very bottom */}
+            <div className="overflow-hidden hero-title-wrap text-center">
               <h1 className="hero-title font-[family-name:var(--font-serif)] text-[clamp(48px,10.5vw,160px)] font-normal uppercase tracking-[-0.02em] leading-[0.88] text-white">
                 MGL Realtech
               </h1>
             </div>
           </div>
 
-          {/* Subtitle + description — absolutely positioned bottom-right, overlapping title area */}
-          <div className="absolute bottom-8 right-5 md:bottom-14 md:right-10 lg:right-12 z-20 max-w-[320px] lg:max-w-[360px] text-right">
+          {/* Subtitle + description — absolutely positioned, vertically centered with title, right side */}
+          <div className="absolute bottom-6 right-5 md:bottom-10 md:right-10 lg:right-12 z-20 max-w-[300px] lg:max-w-[340px]">
             <div className="hero-subtitle">
               <p className="font-[family-name:var(--font-glare)] italic text-[clamp(14px,1.4vw,20px)] uppercase tracking-[0.02em] leading-snug text-white/90">
                 Holistic Living<br />In Perfect Harmony
