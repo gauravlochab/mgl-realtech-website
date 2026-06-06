@@ -432,47 +432,52 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ── ABOUT ───────────────────────────────────────────── */}
+        {/* ── ABOUT — 3-column Elyse layout ────────────────── */}
         <section id="about" className="bg-[#121717] py-20 lg:py-[140px]">
-          <div className="max-w-[1400px] mx-auto px-5 md:px-[6vw] grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
-            <div>
-              {/* Section label */}
-              <p className="gsap-reveal font-[family-name:var(--font-glare)] italic text-[16px] text-[rgba(255,255,255,0.7)] mb-6">
-                (About)
-              </p>
-              {/* Heading */}
-              <h2 className="gsap-reveal font-[family-name:var(--font-glare)] text-[clamp(28px,4vw,56px)] font-normal uppercase tracking-[-0.03em] italic leading-[1.1] text-white">
-                Building with purpose
-                <br />
-                since 2017
-              </h2>
-              {/* Image with overlay reveal */}
-              <div className="gsap-reveal relative rounded-lg overflow-hidden aspect-[3/4] mt-10">
+          <div className="max-w-[1400px] mx-auto px-5 md:px-[6vw]">
+            {/* Top row: label | image | text */}
+            <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.4fr_1fr] gap-8 lg:gap-10 items-start">
+              {/* Left — label */}
+              <div className="gsap-reveal">
+                <p className="font-[family-name:var(--font-glare)] italic text-[18px] text-[rgba(255,255,255,0.7)]">
+                  (About)
+                </p>
+              </div>
+
+              {/* Center — large portrait image */}
+              <div className="gsap-reveal relative overflow-hidden aspect-[3/4]">
                 <Image
                   src="/images/about-desktop.avif"
-                  alt="MGL Realtech development project"
-                  width={600}
-                  height={800}
+                  alt="Modern luxury interior"
+                  width={700}
+                  height={933}
                   className="gsap-parallax w-full h-full object-cover"
                 />
                 <div className="img-overlay-reveal" />
               </div>
+
+              {/* Right — body text */}
+              <div className="lg:pt-4">
+                <p className="gsap-reveal font-[family-name:var(--font-inter)] text-[15px] font-light leading-[1.75] text-[rgba(255,255,255,0.65)] tracking-[0.01em]">
+                  Every element of MGL Realtech reflects a commitment to excellence.
+                  From thoughtfully designed residential spaces to premium
+                  commercial developments, we embody a holistic approach
+                  to real estate.
+                </p>
+                <p className="gsap-reveal font-[family-name:var(--font-inter)] text-[15px] font-light leading-[1.75] text-[rgba(255,255,255,0.65)] tracking-[0.01em] mt-5">
+                  Whether you&apos;re seeking a dream home, an investment
+                  opportunity, or a space that inspires growth, MGL Realtech
+                  offers it all.
+                </p>
+              </div>
             </div>
-            <div className="lg:pt-20">
-              <p className="gsap-reveal font-[family-name:var(--font-inter)] text-[18px] font-light leading-[1.75] text-[rgba(255,255,255,0.65)] tracking-[0.01em]">
-                MGL Realtech started in 2017 with a single conviction: the
-                Kharkhoda-Sonipat corridor would become North NCR&apos;s next
-                growth frontier. While bigger names chased Gurugram and Noida, we
-                committed to this belt, buying land, building roads, delivering
-                plots.
-              </p>
-              <p className="gsap-reveal font-[family-name:var(--font-inter)] text-[18px] font-light leading-[1.75] text-[rgba(255,255,255,0.65)] tracking-[0.01em] mt-6">
-                Ten projects and 500+ families later, the KMP Expressway and
-                NH-344P have validated that bet. Now we&apos;re building Mystical
-                Meadows, a 150-acre golf township that will anchor this
-                corridor&apos;s next chapter.
-              </p>
-            </div>
+
+            {/* Bottom — massive heading */}
+            <h2 className="gsap-reveal font-[family-name:var(--font-glare)] text-[clamp(40px,6vw,90px)] font-normal uppercase tracking-[-0.03em] leading-[1.05] text-white mt-12 lg:mt-16 max-w-[700px]">
+              <em className="italic">Timeless</em>{" "}Design{" "}
+              <em className="italic">Purposeful</em>{" "}
+              Development
+            </h2>
           </div>
         </section>
 
