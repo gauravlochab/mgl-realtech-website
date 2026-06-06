@@ -401,8 +401,8 @@ export default function Home() {
             <div className="flex items-end gap-6 md:gap-10 flex-wrap">
               {/* Giant title — fills most of the viewport width */}
               <div className="overflow-hidden hero-title-wrap shrink-0">
-                <h1 className="hero-title font-[family-name:var(--font-serif)] text-[clamp(120px,25vw,380px)] font-normal uppercase tracking-[-0.03em] leading-[0.82] text-white">
-                  MGL
+                <h1 className="hero-title font-[family-name:var(--font-serif)] text-[clamp(48px,10.5vw,160px)] font-normal uppercase tracking-[-0.02em] leading-[0.88] text-white">
+                  MGL Realtech
                 </h1>
               </div>
 
