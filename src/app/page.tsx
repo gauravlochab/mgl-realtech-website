@@ -401,7 +401,7 @@ export default function Home() {
           />
           <div className="absolute inset-0 bg-gradient-to-b from-[rgba(18,23,23,0.05)] via-[rgba(18,23,23,0.25)] to-[rgba(18,23,23,0.65)]" />
 
-          <div className="relative z-10 w-full max-w-[1200px] mx-auto px-5 md:px-8 lg:px-10 pb-16 md:pb-20">
+          <div className="relative z-10 w-full max-w-[1200px] mx-auto px-5 md:px-8 lg:px-10 pb-10 md:pb-20">
             <div className="flex flex-col md:flex-row md:items-baseline gap-6 md:gap-10">
               <h1 className="font-[family-name:var(--font-serif)] text-[clamp(80px,18vw,260px)] font-light tracking-[-0.04em] leading-[0.85]">
                 MGL
@@ -477,7 +477,7 @@ export default function Home() {
                   ref={counter.ref}
                   className="border-t-2 border-[var(--gold)] pt-6"
                 >
-                  <p className="font-[family-name:var(--font-serif)] text-[clamp(48px,8vw,110px)] font-light leading-none">
+                  <p className="font-[family-name:var(--font-serif)] text-[clamp(36px,8vw,110px)] font-light leading-none">
                     {counter.count}
                     {s.suffix}
                   </p>
@@ -652,7 +652,7 @@ export default function Home() {
               </div>
 
               {/* Content */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.2fr_0.8fr_1fr] gap-4 lg:gap-6 min-h-[300px] lg:min-h-[400px]">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.2fr_0.8fr_1fr] gap-4 lg:gap-6 min-h-0 md:min-h-[300px] lg:min-h-[400px]">
                 <div className="rounded-lg overflow-hidden relative aspect-[4/5] md:aspect-auto">
                   {AMENITIES.map((a, i) => (
                     <Image
@@ -741,7 +741,7 @@ export default function Home() {
                       : "max-h-0 opacity-0"
                   }`}
                 >
-                  <p className="text-base font-normal leading-relaxed opacity-60 pb-6 lg:pb-7 pl-12 md:pl-16 max-w-[600px]">
+                  <p className="text-base font-normal leading-relaxed opacity-60 pb-6 lg:pb-7 pl-10 md:pl-16 max-w-[600px]">
                     {f.a}
                   </p>
                 </div>
@@ -760,7 +760,7 @@ export default function Home() {
             fill
             className="object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[rgba(18,23,23,0.92)] to-[rgba(18,23,23,0.65)]" />
+          <div className="absolute inset-0 bg-gradient-to-b md:bg-gradient-to-r from-[rgba(18,23,23,0.92)] to-[rgba(18,23,23,0.65)]" />
 
           <div className="relative z-10 max-w-[1200px] mx-auto px-5 md:px-8 lg:px-10 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <div className="">
@@ -776,7 +776,7 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="bg-white/5 backdrop-blur-2xl border border-white/10 rounded-lg p-8 lg:p-10">
+            <div className="bg-white/5 backdrop-blur-2xl border border-white/10 rounded-lg p-6 md:p-8 lg:p-10">
               <h3 className="font-[family-name:var(--font-serif)] text-2xl font-light">
                 Connect With Us
               </h3>
