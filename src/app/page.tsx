@@ -399,7 +399,7 @@ export default function Home() {
           {/* Hero content — title fills bottom edge-to-edge, subtitle overlays bottom-right */}
           <div className="relative z-10 w-full pb-8 md:pb-12">
             {/* Giant title — centered at the very bottom */}
-            <div className="overflow-hidden hero-title-wrap text-center">
+            <div className="overflow-hidden hero-title-wrap text-center md:-translate-x-[5%]">
               <h1 className="hero-title font-[family-name:var(--font-serif)] text-[clamp(48px,10.5vw,160px)] font-normal uppercase tracking-[-0.02em] leading-[0.88] text-white">
                 MGL Realtech
               </h1>
@@ -407,7 +407,7 @@ export default function Home() {
           </div>
 
           {/* Subtitle + description — absolutely positioned, vertically centered with title, right side */}
-          <div className="absolute bottom-6 right-5 md:bottom-10 md:right-10 lg:right-12 z-20 max-w-[300px] lg:max-w-[340px]">
+          <div className="absolute bottom-6 right-5 md:bottom-10 md:right-[14%] lg:right-[16%] z-20 max-w-[300px] lg:max-w-[340px]">
             <div className="hero-subtitle">
               <p className="font-[family-name:var(--font-glare)] italic text-[clamp(14px,1.4vw,20px)] uppercase tracking-[0.02em] leading-snug text-white/90">
                 Holistic Living<br />In Perfect Harmony
