@@ -396,36 +396,34 @@ export default function Home() {
           />
           <div className="absolute inset-0 bg-gradient-to-b from-[rgba(18,23,23,0.05)] via-[rgba(18,23,23,0.15)] to-[rgba(18,23,23,0.55)]" />
 
-          {/* Hero content — Elyse layout: giant title bottom-left, subtitle+desc to the right at baseline */}
-          <div className="relative z-10 w-full px-5 md:px-10 lg:px-12 pb-8 md:pb-14">
-            <div className="flex items-end gap-6 md:gap-10 flex-wrap">
-              {/* Giant title — fills most of the viewport width */}
-              <div className="overflow-hidden hero-title-wrap shrink-0">
-                <h1 className="hero-title font-[family-name:var(--font-serif)] text-[clamp(48px,10.5vw,160px)] font-normal uppercase tracking-[-0.02em] leading-[0.88] text-white">
-                  MGL Realtech
-                </h1>
-              </div>
+          {/* Hero content — title fills bottom edge-to-edge, subtitle overlays bottom-right */}
+          <div className="relative z-10 w-full px-5 md:px-10 lg:px-12 pb-0">
+            {/* Giant title — spans full width at the very bottom */}
+            <div className="overflow-hidden hero-title-wrap">
+              <h1 className="hero-title font-[family-name:var(--font-serif)] text-[clamp(48px,10.5vw,160px)] font-normal uppercase tracking-[-0.02em] leading-[0.88] text-white">
+                MGL Realtech
+              </h1>
+            </div>
+          </div>
 
-              {/* Right side — subtitle + description, baseline-aligned with title */}
-              <div className="pb-[0.5em] md:pb-[1em] max-w-[380px]">
-                <div className="hero-subtitle">
-                  <p className="font-[family-name:var(--font-glare)] italic text-[clamp(14px,1.4vw,20px)] uppercase tracking-[0.02em] leading-snug text-white/90">
-                    Holistic Living<br />In Perfect Harmony
-                  </p>
-                </div>
-                <div className="hero-desc mt-5">
-                  <p className="font-[family-name:var(--font-inter)] text-[clamp(12px,1vw,15px)] font-normal leading-[1.7] text-white/60">
-                    Welcome to MGL Realtech, where purposeful design and
-                    community-focused development converge to create
-                    an unparalleled standard of North NCR living.
-                  </p>
-                </div>
-                <div className="hero-desc mt-5">
-                  <p className="font-[family-name:var(--font-serif)] text-[11px] uppercase tracking-[0.15em] text-white/70 cursor-pointer hover:text-white transition-colors">
-                    Scroll
-                  </p>
-                </div>
-              </div>
+          {/* Subtitle + description — absolutely positioned bottom-right, overlapping title area */}
+          <div className="absolute bottom-8 right-5 md:bottom-14 md:right-10 lg:right-12 z-20 max-w-[320px] lg:max-w-[360px] text-right">
+            <div className="hero-subtitle">
+              <p className="font-[family-name:var(--font-glare)] italic text-[clamp(14px,1.4vw,20px)] uppercase tracking-[0.02em] leading-snug text-white/90">
+                Holistic Living<br />In Perfect Harmony
+              </p>
+            </div>
+            <div className="hero-desc mt-4">
+              <p className="font-[family-name:var(--font-inter)] text-[clamp(12px,1vw,15px)] font-normal leading-[1.7] text-white/60 text-left">
+                Welcome to MGL Realtech, where purposeful design and
+                community-focused development converge to create
+                an unparalleled standard of North NCR living.
+              </p>
+            </div>
+            <div className="hero-desc mt-4">
+              <p className="font-[family-name:var(--font-serif)] text-[11px] uppercase tracking-[0.15em] text-white/70">
+                Scroll
+              </p>
             </div>
           </div>
         </section>
