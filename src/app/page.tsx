@@ -1,9 +1,960 @@
+"use client";
+
+import { useState, useEffect, useRef, useCallback } from "react";
+import Image from "next/image";
+
+/* ═══════════════════════════════════════════════════════════════
+   MGL Realtech — Complete Single-Page Website (v3)
+   Full Tailwind rewrite: responsive, animated, accessible.
+   Now with CSS-driven hero reveal, scroll reveal, parallax,
+   counter animation, and FAQ hover-reveal on desktop.
+   ═══════════════════════════════════════════════════════════════ */
+
+// ── Data ──────────────────────────────────────────────────────
+
+const NAV_LINKS = [
+  { label: "Projects", href: "#projects" },
+  { label: "About", href: "#about" },
+  { label: "Contact", href: "#contact" },
+];
+
+const PROJECTS = [
+  {
+    title: "MGL Greens",
+    subtitle: "Premium Residential Plots",
+    location: "NH-344P, Kharkhoda",
+    status: "Delivered",
+    desc: "Thoughtfully planned residential plots across 25 acres with landscaped surroundings, 24/7 security, and tree-lined avenues near NH-344P.",
+    image: "/images/livings-1.avif",
+  },
+  {
+    title: "MGL Vantage",
+    subtitle: "Luxury Villa Floors",
+    location: "Central Kharkhoda",
+    status: "Selling",
+    desc: "Elegant villa floors with private terraces, Italian marble flooring, and curated interiors in the heart of Kharkhoda's emerging township belt.",
+    image: "/images/livings-2.avif",
+  },
+  {
+    title: "MGL Square",
+    subtitle: "Commercial Hub",
+    location: "NH-344P Frontage",
+    status: "Upcoming",
+    desc: "Strategic commercial spaces with prime highway visibility, modern infrastructure, and walk-to-work convenience for the surrounding residential catchment.",
+    image: "/images/livings-3.avif",
+  },
+];
+
+const BELIEFS = [
+  {
+    title: "Zero-Delay Track Record",
+    desc: "Every project delivered on schedule, 7 years running. We announce possession dates, not excuses.",
+  },
+  {
+    title: "DTCP-First, Always",
+    desc: "100% of our plots carry DTCP approval before the first booking. No grey-area layouts, ever.",
+  },
+  {
+    title: "Builder-Grade Construction",
+    desc: "In-house civil team, no sub-contracting. We pour every foundation and lay every road ourselves.",
+  },
+  {
+    title: "Community Over Units",
+    desc: "Parks, temples, community halls.planned from day one, not afterthoughts squeezed into leftover plots.",
+  },
+  {
+    title: "North NCR Conviction",
+    desc: "While others chased Gurugram, we bet on the Kharkhoda-Sonipat corridor. 10 projects later, the KMP is proving us right.",
+  },
+];
+
+const AMENITIES = [
+  {
+    title: "Wellness & Fitness",
+    desc: "Private fitness studios, meditation gardens, and yoga decks designed for daily well-being, not brochure fillers.",
+    big: "/images/amenities-1-big.avif",
+    small: "/images/amenities-1-small.avif",
+  },
+  {
+    title: "Community Spaces",
+    desc: "Banquet lawns, community halls, and shaded sit-outs where neighbours become friends. Designed for weekend gatherings and festival celebrations.",
+    big: "/images/amenities-2-big.avif",
+    small: "/images/amenities-2-small.avif",
+  },
+  {
+    title: "Nature & Outdoors",
+    desc: "Tree-lined jogging tracks, landscaped courtyards, and children's play zones surrounded by greenery, not concrete.",
+    big: "/images/amenities-3-big.avif",
+    small: "/images/amenities-3-small.avif",
+  },
+];
+
+const FAQS = [
+  {
+    q: "Where exactly are MGL projects located?",
+    a: "All our projects are near NH-344P in Kharkhoda, Sonipat district (Haryana). The area is 20 minutes from the KMP Expressway and under development as North NCR's next growth corridor.",
+  },
+  {
+    q: "Are your plots DTCP approved?",
+    a: "Yes.100% of MGL plots carry DTCP (Directorate of Town & Country Planning) approval. We never sell unapproved layouts. Licence numbers are shared at the time of booking.",
+  },
+  {
+    q: "What is Mystical Meadows?",
+    a: "Mystical Meadows is our upcoming 150-acre integrated golf township in Kharkhoda, MGL's most ambitious project. It includes residential plots, villa floors, a 9-hole golf course, a clubhouse, and commercial zones.",
+  },
+  {
+    q: "Do you offer site visits?",
+    a: "Absolutely. We arrange complimentary site visits with pick-up from Sonipat or Delhi. Call +91-6361618181 or fill the contact form to book a visit on any weekend.",
+  },
+];
+
+const STATS = [
+  { value: 10, suffix: "+", label: "Projects Delivered" },
+  { value: 7, suffix: "+", label: "Years, Zero Delays" },
+  { value: 500, suffix: "+", label: "Families Settled" },
+  { value: 100, suffix: "%", label: "DTCP Approved" },
+];
+
+// ── Hooks ─────────────────────────────────────────────────────
+
+/** Scroll-triggered reveal using React state (not classList — avoids Tailwind purge) */
+function useReveal(threshold = 0.15) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          obs.unobserve(el);
+        }
+      },
+      { threshold }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, [threshold]);
+  return { ref, isVisible };
+}
+
+/** Style object for a reveal element — use as */
+function revealStyle(visible: boolean, delay = 0): React.CSSProperties {
+  return {
+    opacity: visible ? 1 : 0,
+    transform: visible ? "translateY(0)" : "translateY(40px)",
+    transition: `opacity 0.8s cubic-bezier(0.16,1,0.3,1) ${delay}s, transform 0.8s cubic-bezier(0.16,1,0.3,1) ${delay}s`,
+  };
+}
+
+/** Animated counter that starts counting when element scrolls into view */
+function useCountUp(target: number, duration = 2000) {
+  const [count, setCount] = useState(0);
+  const [started, setStarted] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setStarted(true);
+          obs.unobserve(el);
+        }
+      },
+      { threshold: 0.5 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!started) return;
+    const start = performance.now();
+    const step = (now: number) => {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+      setCount(Math.round(eased * target));
+      if (progress < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }, [started, target, duration]);
+
+  return { count, ref };
+}
+
+// ── Main Page ─────────────────────────────────────────────────
+
 export default function Home() {
+  const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [activeProject, setActiveProject] = useState(0);
+  const [activeAmenity, setActiveAmenity] = useState(0);
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [formSubmitted, setFormSubmitted] = useState(false);
+
+  // ── Scroll reveal refs ────────────────────────────────────
+  const aboutHeading = useReveal();
+  const aboutText = useReveal();
+  const statsGrid = useReveal();
+  const projectsHeading = useReveal();
+  const projectsImage = useReveal();
+  const beliefsHeading = useReveal();
+  const beliefsCards = useReveal();
+  const amenitiesHeading = useReveal();
+  const amenitiesContent = useReveal();
+  const faqHeading = useReveal();
+  const faq0 = useReveal();
+  const faq1 = useReveal();
+  const faq2 = useReveal();
+  const faq3 = useReveal();
+  const faqReveals = [faq0, faq1, faq2, faq3];
+  const ctaHeading = useReveal();
+  const ctaForm = useReveal();
+  const footerCols = useReveal();
+
+  // ── Image reveal + parallax refs ──────────────────────────
+  const aboutImgReveal = useReveal();
+  const aboutImgRef = useRef<HTMLImageElement>(null);
+
+  // ── Stat counters ─────────────────────────────────────────
+  const stat0 = useCountUp(STATS[0].value);
+  const stat1 = useCountUp(STATS[1].value);
+  const stat2 = useCountUp(STATS[2].value);
+  const stat3 = useCountUp(STATS[3].value);
+  const statCounters = [stat0, stat1, stat2, stat3];
+
+  // ── Scroll handler (header bg) ────────────────────────────
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 60);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // ── About image parallax ─────────────────────────────────
+  useEffect(() => {
+    const handleScroll = () => {
+      const img = aboutImgRef.current;
+      if (!img) return;
+      const rect = img.getBoundingClientRect();
+      const centerOffset =
+        (rect.top + rect.height / 2 - window.innerHeight / 2) /
+        window.innerHeight;
+      img.style.transform = `translateY(${centerOffset * -30}px) scale(1.05)`;
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // ── Auto-advance projects ────────────────────────────────
+  useEffect(() => {
+    const id = setInterval(
+      () => setActiveProject((p) => (p + 1) % PROJECTS.length),
+      5000
+    );
+    return () => clearInterval(id);
+  }, []);
+
+  // ── Lock body scroll when menu open ──────────────────────
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen]);
+
+  // ── Form handler ─────────────────────────────────────────
+  const handleFormSubmit = useCallback(
+    (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      const form = e.currentTarget;
+      const emailInput = form.querySelector(
+        'input[name="email"]'
+      ) as HTMLInputElement;
+      if (emailInput && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value)) {
+        emailInput.setCustomValidity("Please enter a valid email address");
+        emailInput.reportValidity();
+        return;
+      }
+      setFormSubmitted(true);
+      setTimeout(() => setFormSubmitted(false), 5000);
+      form.reset();
+    },
+    []
+  );
+
+  const closeMenu = useCallback(() => setMenuOpen(false), []);
+
   return (
-    <main className="flex min-h-screen items-center justify-center">
-      <p className="text-muted-foreground">
-        Clone target not yet built. Run <code className="font-mono text-foreground">/clone-website</code> to start.
-      </p>
-    </main>
+    <>
+      {/* ── NAV ──────────────────────────────────────────────── */}
+      <header
+        className={`fixed top-0 left-0 w-full z-[100] transition-all duration-400 ${
+          scrolled
+            ? "bg-[rgba(18,23,23,0.95)] backdrop-blur-xl border-b border-white/[0.06]"
+            : "bg-transparent border-b border-transparent"
+        }`}
+      >
+        <nav className="max-w-[1200px] mx-auto px-5 md:px-8 lg:px-10 h-[72px] flex items-center justify-between">
+          {/* Logo */}
+          <a
+            href="#"
+            className="font-[family-name:var(--font-serif)] text-base font-light tracking-[0.2em] uppercase"
+          >
+            MGL<span className="text-[var(--gold)]">.</span>
+          </a>
+
+          {/* Desktop nav */}
+          <div className="hidden md:flex items-center gap-8">
+            {NAV_LINKS.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                className="text-sm opacity-70 tracking-wide hover:opacity-100 transition-opacity duration-300"
+              >
+                {link.label}
+              </a>
+            ))}
+            <a
+              href="#contact"
+              className="bg-white text-[#254441] px-6 py-2 text-xs tracking-[0.1em] uppercase rounded-full hover:bg-white/90 transition-all duration-300"
+            >
+              Book a Visit
+            </a>
+          </div>
+
+          {/* Hamburger button, mobile only */}
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="md:hidden relative w-8 h-8 flex flex-col items-center justify-center gap-1.5"
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={menuOpen}
+          >
+            <span
+              className={`block w-6 h-px bg-white transition-all duration-300 ${
+                menuOpen ? "rotate-45 translate-y-[3.5px]" : ""
+              }`}
+            />
+            <span
+              className={`block w-6 h-px bg-white transition-all duration-300 ${
+                menuOpen ? "-rotate-45 -translate-y-[3.5px]" : ""
+              }`}
+            />
+          </button>
+        </nav>
+      </header>
+
+      {/* ── Mobile menu overlay ────────────────────────────── */}
+      <div
+        className={`fixed inset-0 z-[99] bg-[#121717] flex flex-col items-center justify-center transition-all duration-500 md:hidden ${
+          menuOpen
+            ? "opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none"
+        }`}
+      >
+        <nav className="flex flex-col items-center gap-10">
+          {NAV_LINKS.map((link, i) => (
+            <a
+              key={link.label}
+              href={link.href}
+              onClick={closeMenu}
+              className={`font-[family-name:var(--font-serif)] text-4xl font-light tracking-wide transition-all duration-500 ${
+                menuOpen
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-4"
+              }`}
+              style={{ transitionDelay: menuOpen ? `${i * 100 + 200}ms` : "0ms" }}
+            >
+              {link.label}
+            </a>
+          ))}
+          <a
+            href="#contact"
+            onClick={closeMenu}
+            className={`mt-4 border border-white/50 px-8 py-3 text-sm tracking-[0.1em] uppercase hover:bg-white hover:text-[#254441] transition-all duration-500 ${
+              menuOpen
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-4"
+            }`}
+            style={{ transitionDelay: menuOpen ? "500ms" : "0ms" }}
+          >
+            Book a Visit
+          </a>
+        </nav>
+      </div>
+
+      <main>
+        {/* ── HERO ────────────────────────────────────────────── */}
+        <section className="relative h-screen min-h-[600px] flex items-end overflow-hidden">
+          <Image
+            src="/images/cta-desktop.avif"
+            alt="Aerial view of MGL township"
+            fill
+            className="object-cover"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-[rgba(18,23,23,0.05)] via-[rgba(18,23,23,0.25)] to-[rgba(18,23,23,0.65)]" />
+
+          <div className="relative z-10 w-full max-w-[1200px] mx-auto px-5 md:px-8 lg:px-10 pb-16 md:pb-20">
+            <div className="flex flex-col md:flex-row md:items-baseline gap-6 md:gap-10">
+              <h1 className="font-[family-name:var(--font-serif)] text-[clamp(80px,18vw,260px)] font-light tracking-[-0.04em] leading-[0.85]">
+                MGL
+              </h1>
+
+              {/* Subtitle + description */}
+              <div className="max-w-[420px] pb-1 md:pb-2">
+                <p className="font-[family-name:var(--font-glare)] text-lg md:text-xl lg:text-2xl font-light tracking-[0.01em] leading-snug opacity-85">
+                  Crafting North NCR&apos;s next landmark addresses
+                </p>
+                <p className="text-base font-normal leading-relaxed opacity-60 mt-4">
+                  10 projects delivered. 500+ families settled. Now building
+                  Mystical Meadows, a 150-acre golf township.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ── ABOUT ───────────────────────────────────────────── */}
+        <section id="about" className="bg-[var(--bg)] py-20 lg:py-28">
+          <div className="max-w-[1200px] mx-auto px-5 md:px-8 lg:px-10 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+            <div className="">
+              <p className="font-[family-name:var(--font-glare)] text-lg italic opacity-70 tracking-wide mb-4">
+                (About)
+              </p>
+              <h2 className="font-[family-name:var(--font-glare)] text-[clamp(28px,4vw,56px)] font-light leading-[1.15] tracking-[-0.02em]">
+                Building with purpose
+                <br />
+                since 2017
+              </h2>
+              <div
+               
+                className="mt-10 rounded-lg overflow-hidden aspect-[3/4]"
+              >
+                <Image
+                  ref={aboutImgRef}
+                  src="/images/about-desktop.avif"
+                  alt="MGL Realtech development project"
+                  width={600}
+                  height={800}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
+            <div className="lg:pt-20">
+              <p className="text-lg font-normal leading-[1.7] opacity-70 tracking-[0.02em]">
+                MGL Realtech started in 2017 with a single conviction: the
+                Kharkhoda-Sonipat corridor would become North NCR&apos;s next
+                growth frontier. While bigger names chased Gurugram and Noida, we
+                committed to this belt, buying land, building roads, delivering
+                plots.
+              </p>
+              <p className="text-lg font-normal leading-[1.7] opacity-70 tracking-[0.02em] mt-6">
+                Ten projects and 500+ families later, the KMP Expressway and
+                NH-344P have validated that bet. Now we&apos;re building Mystical
+                Meadows, a 150-acre golf township that will anchor this
+                corridor&apos;s next chapter.
+              </p>
+            </div>
+          </div>
+
+          {/* Stats */}
+          <div
+           
+            className="max-w-[1200px] mx-auto px-5 md:px-8 lg:px-10 mt-16 lg:mt-20 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-10"
+          >
+            {STATS.map((s, i) => {
+              const counter = statCounters[i];
+              return (
+                <div
+                  key={i}
+                  ref={counter.ref}
+                  className="border-t-2 border-[var(--gold)] pt-6"
+                >
+                  <p className="font-[family-name:var(--font-serif)] text-[clamp(48px,8vw,110px)] font-light leading-none">
+                    {counter.count}
+                    {s.suffix}
+                  </p>
+                  <p className="text-[15px] opacity-50 mt-2 font-normal">
+                    {s.label}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+        </section>
+
+        {/* ── PROJECTS ────────────────────────────────────────── */}
+        <section id="projects" className="bg-[var(--bg)] py-20 lg:py-28">
+          <div className="max-w-[1200px] mx-auto px-5 md:px-8 lg:px-10">
+            <div className="">
+              <p className="font-[family-name:var(--font-glare)] text-lg italic opacity-70 tracking-wide mb-4">
+                (Our Projects)
+              </p>
+
+              {/* Project title + status */}
+              <div className="mb-6 md:mb-10">
+                <div className="flex flex-col md:flex-row md:items-baseline gap-3 md:gap-6">
+                  <h2 className="font-[family-name:var(--font-serif)] text-[clamp(28px,4vw,56px)] font-light uppercase leading-[1.15] transition-opacity duration-300">
+                    {PROJECTS[activeProject].title}
+                  </h2>
+                  <span
+                    className={`inline-block self-start px-3 py-1 text-xs tracking-wider uppercase rounded-full border ${
+                      PROJECTS[activeProject].status === "Delivered"
+                        ? "border-green-400/40 text-green-400"
+                        : PROJECTS[activeProject].status === "Selling"
+                          ? "border-[var(--gold)]/40 text-[var(--gold)]"
+                          : "border-white/20 text-white/60"
+                    }`}
+                  >
+                    {PROJECTS[activeProject].status}
+                  </span>
+                </div>
+                <p className="text-sm opacity-40 mt-1">
+                  {PROJECTS[activeProject].subtitle} &middot;{" "}
+                  {PROJECTS[activeProject].location}
+                </p>
+              </div>
+            </div>
+
+            {/* Image + Description */}
+            <div
+             
+              className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-8 lg:gap-12 items-end"
+            >
+              <div className="rounded-lg overflow-hidden aspect-[4/3] relative">
+                {PROJECTS.map((proj, i) => (
+                  <Image
+                    key={i}
+                    src={proj.image}
+                    alt={proj.title}
+                    width={800}
+                    height={600}
+                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
+                      i === activeProject ? "opacity-100" : "opacity-0"
+                    }`}
+                  />
+                ))}
+              </div>
+              <div>
+                <p className="text-[17px] font-normal leading-relaxed opacity-60 transition-opacity duration-500">
+                  {PROJECTS[activeProject].desc}
+                </p>
+                <div className="flex gap-3 mt-8">
+                  {PROJECTS.map((_, i) => (
+                    <button
+                      key={i}
+                      onClick={() => setActiveProject(i)}
+                      className={`w-10 h-10 rounded-full border text-sm cursor-pointer transition-all duration-300 ${
+                        i === activeProject
+                          ? "border-white bg-white/10"
+                          : "border-white/20 bg-transparent hover:border-white/50"
+                      }`}
+                      aria-label={`View project ${i + 1}`}
+                    >
+                      {i + 1}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ── BELIEFS ─────────────────────────────────────────── */}
+        <section className="relative py-20 lg:py-28 overflow-hidden">
+          <Image
+            src="/images/beliefs-1-desktop.avif"
+            alt=""
+            fill
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-[rgba(18,23,23,0.82)]" />
+
+          <div className="relative z-10 max-w-[1200px] mx-auto px-5 md:px-8 lg:px-10">
+            <div className="">
+              <p className="font-[family-name:var(--font-glare)] text-lg italic opacity-70 tracking-wide mb-4">
+                (Our Beliefs)
+              </p>
+              <h2 className="font-[family-name:var(--font-serif)] text-[clamp(28px,4vw,56px)] font-light uppercase leading-[1.15] mb-4">
+                Built on conviction,
+                <br className="hidden md:block" /> not convention
+              </h2>
+              <p className="text-lg font-normal leading-[1.7] opacity-60 max-w-[600px] mb-12 lg:mb-14">
+                Five principles that have guided every land purchase, every
+                foundation pour, and every handover since 2017.
+              </p>
+            </div>
+
+            {/* 3-col grid: 3 top, 2 bottom centered */}
+            <div
+             
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
+            >
+              {BELIEFS.map((b, i) => (
+                <div
+                  key={i}
+                  className={`group bg-[var(--glass)] backdrop-blur-xl border border-[var(--glass-border)] rounded-lg p-7 lg:p-8 min-h-[200px] flex flex-col justify-between hover:bg-white/[0.07] hover:border-white/[0.15] transition-all duration-300 ${
+                    i >= 3 ? "sm:col-span-1 lg:col-start-1 lg:col-span-1" : ""
+                  } ${i === 3 ? "lg:col-start-1" : ""} ${i === 4 ? "lg:col-start-2" : ""}`}
+                >
+                  <div>
+                    <h3 className="font-[family-name:var(--font-serif)] text-xl font-light mb-3">
+                      {b.title}
+                    </h3>
+                    <p className="text-sm font-normal opacity-60 leading-relaxed">
+                      {b.desc}
+                    </p>
+                  </div>
+                  <p className="text-white/50 text-sm mt-4">
+                    ( {i + 1} )
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── AMENITIES ───────────────────────────────────────── */}
+        <section className="bg-[var(--bg)] py-20 lg:py-28">
+          <div className="max-w-[1200px] mx-auto px-5 md:px-8 lg:px-10">
+            <div className="">
+              <p className="font-[family-name:var(--font-glare)] text-lg italic opacity-70 tracking-wide mb-4">
+                (Amenities)
+              </p>
+              <h2 className="font-[family-name:var(--font-serif)] text-[clamp(28px,4vw,56px)] font-light uppercase leading-[1.15] mb-10">
+                Designed for living
+              </h2>
+            </div>
+
+            <div className="">
+              {/* Tabs */}
+              <div className="flex flex-wrap gap-6 md:gap-10 mb-10 lg:mb-12">
+                {AMENITIES.map((a, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setActiveAmenity(i)}
+                    className={`bg-transparent border-none cursor-pointer text-[13px] tracking-[0.08em] uppercase pb-2 transition-all duration-300 ${
+                      i === activeAmenity
+                        ? "opacity-100 border-b-2 border-b-white text-white"
+                        : "opacity-35 border-b-2 border-b-transparent text-white hover:opacity-60"
+                    }`}
+                  >
+                    {a.title}
+                  </button>
+                ))}
+              </div>
+
+              {/* Content */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.2fr_0.8fr_1fr] gap-4 lg:gap-6 min-h-[300px] lg:min-h-[400px]">
+                <div className="rounded-lg overflow-hidden relative aspect-[4/5] md:aspect-auto">
+                  {AMENITIES.map((a, i) => (
+                    <Image
+                      key={i}
+                      src={a.big}
+                      alt={a.title}
+                      width={600}
+                      height={750}
+                      className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
+                        i === activeAmenity ? "opacity-100" : "opacity-0"
+                      }`}
+                    />
+                  ))}
+                </div>
+                <div className="rounded-lg overflow-hidden relative aspect-[4/5] md:aspect-auto hidden md:block">
+                  {AMENITIES.map((a, i) => (
+                    <Image
+                      key={i}
+                      src={a.small}
+                      alt=""
+                      width={400}
+                      height={500}
+                      className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
+                        i === activeAmenity ? "opacity-100" : "opacity-0"
+                      }`}
+                    />
+                  ))}
+                </div>
+                <div className="flex flex-col justify-end pb-4 lg:pb-5">
+                  <h3 className="font-[family-name:var(--font-serif)] text-2xl lg:text-[28px] font-light mb-4 transition-opacity duration-500">
+                    {AMENITIES[activeAmenity].title}
+                  </h3>
+                  <p className="text-base font-normal leading-relaxed opacity-60 transition-opacity duration-500">
+                    {AMENITIES[activeAmenity].desc}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ── FAQ ─────────────────────────────────────────────── */}
+        <section className="bg-[var(--bg)] py-20 lg:py-28">
+          <div className="max-w-[1200px] mx-auto px-5 md:px-8 lg:px-10">
+            <div className="">
+              <p className="font-[family-name:var(--font-glare)] text-lg italic opacity-70 tracking-wide mb-4">
+                (FAQ)
+              </p>
+              <h2 className="font-[family-name:var(--font-serif)] text-[clamp(28px,4vw,56px)] font-light uppercase leading-[1.15] mb-10 lg:mb-12">
+                Your questions, answered
+              </h2>
+            </div>
+
+            {FAQS.map((f, i) => (
+              <div
+                key={i}
+               
+               
+                className={`border-t border-[var(--border-c)] ${
+                  openFaq === i ? "open" : ""
+                }`}
+              >
+                <button
+                  onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                  className="w-full bg-transparent border-none cursor-pointer py-6 lg:py-7 flex items-center gap-4 md:gap-6 text-left hover:bg-white/[0.02] transition-colors duration-300 text-white"
+                  aria-expanded={openFaq === i}
+                >
+                  <span className="text-[15px] opacity-40 font-light shrink-0 w-10 md:w-12">
+                    ( {i + 1} )
+                  </span>
+                  <span className="font-[family-name:var(--font-serif)] text-lg md:text-[22px] font-light flex-1 uppercase">
+                    {f.q}
+                  </span>
+                  <span
+                    className={`text-2xl opacity-40 transition-transform duration-300 shrink-0 ${
+                      openFaq === i ? "rotate-45" : "rotate-0"
+                    }`}
+                  >
+                    +
+                  </span>
+                </button>
+                <div
+                  className={`faq-answer overflow-hidden transition-all duration-400 ${
+                    openFaq === i
+                      ? "max-h-[200px] opacity-100"
+                      : "max-h-0 opacity-0"
+                  }`}
+                >
+                  <p className="text-base font-normal leading-relaxed opacity-60 pb-6 lg:pb-7 pl-12 md:pl-16 max-w-[600px]">
+                    {f.a}
+                  </p>
+                </div>
+              </div>
+            ))}
+            {/* Bottom border for last item */}
+            <div className="border-t border-[var(--border-c)]" />
+          </div>
+        </section>
+
+        {/* ── CTA / CONTACT ───────────────────────────────────── */}
+        <section id="contact" className="relative py-20 lg:py-28 overflow-hidden">
+          <Image
+            src="/images/beliefs-2-desktop.avif"
+            alt=""
+            fill
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[rgba(18,23,23,0.92)] to-[rgba(18,23,23,0.65)]" />
+
+          <div className="relative z-10 max-w-[1200px] mx-auto px-5 md:px-8 lg:px-10 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            <div className="">
+              <h2 className="font-[family-name:var(--font-serif)] text-[clamp(28px,4vw,56px)] font-light uppercase leading-[1.15]">
+                Visit Our Sites
+                <br />
+                in Kharkhoda
+              </h2>
+              <p className="text-[17px] font-normal leading-relaxed opacity-60 mt-5 max-w-[440px]">
+                See the land, walk the roads, meet the families who already live
+                here. We arrange complimentary site visits every weekend,
+                pick-up from Sonipat or Delhi.
+              </p>
+            </div>
+
+            <div className="bg-white/5 backdrop-blur-2xl border border-white/10 rounded-lg p-8 lg:p-10">
+              <h3 className="font-[family-name:var(--font-serif)] text-2xl font-light">
+                Connect With Us
+              </h3>
+              <p className="text-sm opacity-40 mt-1 mb-8">
+                Our team will contact you shortly.
+              </p>
+
+              {formSubmitted ? (
+                <div className="py-12 text-center">
+                  <div className="text-[var(--gold)] text-4xl mb-4">&#10003;</div>
+                  <p className="font-[family-name:var(--font-serif)] text-xl">
+                    Thank you!
+                  </p>
+                  <p className="text-sm opacity-60 mt-2">
+                    We&apos;ll contact you shortly.
+                  </p>
+                </div>
+              ) : (
+                <form onSubmit={handleFormSubmit} noValidate>
+                  <div className="mb-5">
+                    <label htmlFor="form-name" className="sr-only">
+                      Name
+                    </label>
+                    <input
+                      id="form-name"
+                      name="name"
+                      type="text"
+                      placeholder="Name"
+                      required
+                      className="block w-full bg-transparent border-0 border-b border-b-white/20 py-3.5 text-base font-normal text-white placeholder:text-white/30 outline-none focus:border-b-white/60 transition-colors duration-300"
+                    />
+                  </div>
+                  <div className="mb-5">
+                    <label htmlFor="form-email" className="sr-only">
+                      Email
+                    </label>
+                    <input
+                      id="form-email"
+                      name="email"
+                      type="email"
+                      placeholder="Email"
+                      required
+                      onInput={(e) =>
+                        (e.currentTarget as HTMLInputElement).setCustomValidity("")
+                      }
+                      className="block w-full bg-transparent border-0 border-b border-b-white/20 py-3.5 text-base font-normal text-white placeholder:text-white/30 outline-none focus:border-b-white/60 transition-colors duration-300"
+                    />
+                  </div>
+                  <div className="mb-5">
+                    <label htmlFor="form-phone" className="sr-only">
+                      Phone
+                    </label>
+                    <input
+                      id="form-phone"
+                      name="phone"
+                      type="tel"
+                      placeholder="Phone"
+                      className="block w-full bg-transparent border-0 border-b border-b-white/20 py-3.5 text-base font-normal text-white placeholder:text-white/30 outline-none focus:border-b-white/60 transition-colors duration-300"
+                    />
+                  </div>
+
+                  <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mt-6">
+                    <button
+                      type="submit"
+                      className="bg-transparent border border-white/50 text-white px-8 py-2.5 text-[13px] tracking-[0.08em] uppercase cursor-pointer hover:bg-white hover:text-[#254441] transition-all duration-300"
+                    >
+                      Request
+                    </button>
+                    <p className="text-xs opacity-30 max-w-[160px]">
+                      By submitting, you agree to our privacy policy.
+                    </p>
+                  </div>
+                </form>
+              )}
+            </div>
+          </div>
+        </section>
+      </main>
+
+      {/* ── FOOTER ─────────────────────────────────────────── */}
+      <footer className="bg-[var(--bg)] border-t border-[var(--border-c)] pt-16 pb-8">
+        <div
+         
+          className="max-w-[1200px] mx-auto px-5 md:px-8 lg:px-10 grid grid-cols-1 md:grid-cols-3 gap-10"
+        >
+          <div>
+            <p className="font-[family-name:var(--font-glare)] text-lg italic opacity-70 tracking-wide mb-3">
+              BRAND
+            </p>
+            <p className="font-[family-name:var(--font-serif)] text-lg tracking-[0.15em] uppercase">
+              MGL Realtech
+            </p>
+            <p className="text-sm opacity-40 mt-2 leading-relaxed">
+              Premium real estate developer
+              <br />
+              since 2017. North NCR.
+            </p>
+          </div>
+          <div>
+            <p className="font-[family-name:var(--font-glare)] text-lg italic opacity-70 tracking-wide mb-3">
+              LOCATION
+            </p>
+            <p className="text-[17px] font-normal leading-snug">
+              NH 344P, Kharkhoda
+            </p>
+            <p className="text-[17px] font-normal opacity-60">
+              Sonipat, Haryana, India
+            </p>
+          </div>
+          <div>
+            <p className="font-[family-name:var(--font-glare)] text-lg italic opacity-70 tracking-wide mb-3">
+              CONTACT
+            </p>
+            <a
+              href="mailto:info@mglrealtech.com"
+              className="block text-[17px] font-normal opacity-80 hover:opacity-100 transition-opacity duration-300"
+            >
+              info@mglrealtech.com
+            </a>
+            <a
+              href="tel:+916361618181"
+              className="block text-[17px] font-normal opacity-80 hover:opacity-100 transition-opacity duration-300 mt-1"
+            >
+              +91-6361618181
+            </a>
+          </div>
+        </div>
+
+        {/* Social links */}
+        <div className="max-w-[1200px] mx-auto px-5 md:px-8 lg:px-10 mt-10 flex gap-6 items-center">
+          {[
+            { name: "Instagram", href: "#" },
+            { name: "Facebook", href: "#" },
+            { name: "YouTube", href: "#" },
+          ].map((social) => (
+            <a
+              key={social.name}
+              href={social.href}
+              className="text-xs tracking-[0.1em] uppercase opacity-30 hover:opacity-70 transition-opacity duration-300"
+            >
+              {social.name}
+            </a>
+          ))}
+        </div>
+
+        {/* Copyright */}
+        <div className="max-w-[1200px] mx-auto px-5 md:px-8 lg:px-10 mt-10 border-t border-[var(--border-c)] pt-6 flex flex-col sm:flex-row justify-between gap-2">
+          <p className="text-[13px] opacity-30">
+            &copy; 2026 MGL Realtech Pvt. Ltd.
+          </p>
+          <p className="text-[13px] opacity-30">All rights reserved.</p>
+        </div>
+      </footer>
+
+      {/* ── WhatsApp Floating Button ──────────────────────── */}
+      <a
+        href="https://wa.me/916361618181"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Chat on WhatsApp"
+        className="fixed bottom-6 right-6 z-50 w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center shadow-lg hover:scale-110 hover:shadow-xl transition-all duration-300"
+      >
+        <svg
+          viewBox="0 0 32 32"
+          fill="none"
+          className="w-7 h-7"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M16.004 2.667A13.28 13.28 0 002.72 15.948a13.2 13.2 0 001.787 6.636L2.667 29.333l6.96-1.824A13.28 13.28 0 0016.004 29.333c7.353 0 13.329-5.973 13.329-13.333S23.357 2.667 16.004 2.667zm0 24.31a10.92 10.92 0 01-5.57-1.525l-.4-.237-4.14 1.085 1.104-4.035-.26-.413A10.93 10.93 0 015.07 15.948c0-6.04 4.914-10.95 10.934-10.95 6.02 0 10.93 4.91 10.93 10.95 0 6.043-4.91 10.95-10.93 11.029z"
+            fill="white"
+          />
+          <path
+            d="M23.013 19.16c-.373-.187-2.21-1.09-2.553-1.215-.343-.124-.593-.187-.843.187-.25.374-.967 1.215-1.186 1.465-.218.25-.437.28-.81.093-.374-.187-1.578-.581-3.006-1.853-1.111-.99-1.862-2.213-2.08-2.587-.218-.374-.023-.576.164-.763.168-.168.374-.437.56-.656.187-.218.25-.374.374-.624.125-.25.063-.468-.031-.656-.093-.187-.843-2.03-1.155-2.78-.305-.73-.614-.63-.843-.643h-.718c-.25 0-.655.094-1 .468-.342.374-1.31 1.28-1.31 3.122 0 1.842 1.342 3.622 1.53 3.872.186.25 2.64 4.03 6.398 5.65.894.387 1.592.618 2.137.79.897.286 1.714.246 2.36.15.72-.108 2.21-.904 2.523-1.778.312-.874.312-1.623.218-1.778-.093-.156-.343-.25-.717-.437z"
+            fill="white"
+          />
+        </svg>
+      </a>
+    </>
   );
 }

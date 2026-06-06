@@ -1,27 +1,16 @@
 {
-  "name": "ai-website-clone-template",
-  "version": "0.3.1",
+  "name": "mgl-realtech-website",
+  "version": "1.0.0",
   "private": true,
-  "description": "Clone any website into a clean, modern Next.js codebase using AI coding agents",
-  "author": "JCodesMore",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/JCodesMore/ai-website-cloner-template.git"
-  },
-  "homepage": "https://github.com/JCodesMore/ai-website-cloner-template",
-  "bugs": {
-    "url": "https://github.com/JCodesMore/ai-website-cloner-template/issues"
-  },
+  "description": "MGL Realtech corporate website — luxury real estate developer, North NCR",
+  "author": "JMN Ventures",
+  "license": "UNLICENSED",
   "keywords": [
-    "claude-code",
-    "website-clone",
-    "reverse-engineering",
+    "mgl-realtech",
+    "real-estate",
     "nextjs",
-    "ai",
-    "template",
-    "tailwindcss",
-    "shadcn-ui"
+    "luxury",
+    "corporate-website"
   ],
   "engines": {
     "node": ">=24"
