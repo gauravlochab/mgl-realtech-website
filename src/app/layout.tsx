@@ -1,25 +1,26 @@
 import type { Metadata, Viewport } from "next";
-import { Playfair_Display, Cormorant_Garamond, Inter } from "next/font/google";
+import { Cormorant_Garamond, Inter } from "next/font/google";
 import "./globals.css";
 
-const playfairDisplay = Playfair_Display({
+const cormorantGaramond = Cormorant_Garamond({
   variable: "--font-serif",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["300", "400", "500", "600"],
   display: "swap",
 });
 
-const cormorantGaramond = Cormorant_Garamond({
+const cormorantGlare = Cormorant_Garamond({
   variable: "--font-glare",
   subsets: ["latin"],
   weight: ["300", "400"],
+  style: ["normal", "italic"],
   display: "swap",
 });
 
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
-  weight: ["300", "400"],
+  weight: ["300", "400", "500"],
   display: "swap",
 });
 
@@ -66,7 +67,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${playfairDisplay.variable} ${cormorantGaramond.variable} ${inter.variable}`}
+      className={`${cormorantGaramond.variable} ${cormorantGlare.variable} ${inter.variable}`}
     >
       <body className="mgl-site antialiased">{children}</body>
     </html>
