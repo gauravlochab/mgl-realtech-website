@@ -413,7 +413,7 @@ export default function Home() {
           {/* Subtitle + description — positioned above the title on the right side */}
           <div className="absolute right-5 md:right-10 lg:right-12 z-20 max-w-[280px] lg:max-w-[320px] bottom-[clamp(80px,10vw,180px)]">
             <div className="hero-subtitle">
-              <p className="font-[family-name:var(--font-glare)] italic text-[clamp(14px,1.4vw,20px)] uppercase tracking-[0.02em] leading-snug text-white/70">
+              <p className="font-[family-name:var(--font-serif)] text-[clamp(14px,1.4vw,20px)] uppercase tracking-[0.02em] leading-snug text-white/70">
                 Holistic Living<br />In Perfect Harmony
               </p>
             </div>
@@ -439,7 +439,7 @@ export default function Home() {
             <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.4fr_1fr] gap-8 lg:gap-10 items-start">
               {/* Left — label */}
               <div className="gsap-reveal">
-                <p className="font-[family-name:var(--font-glare)] italic text-[18px] text-[rgba(255,255,255,0.7)]">
+                <p className="font-[family-name:var(--font-serif)] text-[18px] text-[rgba(255,255,255,0.7)]">
                   (About)
                 </p>
               </div>
@@ -473,9 +473,9 @@ export default function Home() {
             </div>
 
             {/* Bottom — massive heading */}
-            <h2 className="gsap-reveal font-[family-name:var(--font-glare)] text-[clamp(40px,6vw,90px)] font-normal uppercase tracking-[-0.03em] leading-[1.05] text-white mt-12 lg:mt-16 max-w-[700px]">
-              <em className="italic">Timeless</em>{" "}Design{" "}
-              <em className="italic">Purposeful</em>{" "}
+            <h2 className="gsap-reveal font-[family-name:var(--font-serif)] text-[clamp(40px,6vw,90px)] font-normal uppercase tracking-[-0.03em] leading-[1.05] text-white mt-12 lg:mt-16 max-w-[700px]">
+              Timeless{" "}Design{" "}
+              Purposeful{" "}
               Development
             </h2>
           </div>
@@ -510,14 +510,14 @@ export default function Home() {
         <section id="projects" className="bg-[#121717] py-20 lg:py-[140px]">
           <div className="max-w-[1400px] mx-auto px-5 md:px-[6vw]">
             {/* Section label */}
-            <p className="gsap-reveal font-[family-name:var(--font-glare)] italic text-[16px] text-[rgba(255,255,255,0.7)] mb-6">
+            <p className="gsap-reveal font-[family-name:var(--font-serif)] text-[16px] text-[rgba(255,255,255,0.7)] mb-6">
               (Our Projects)
             </p>
 
             {/* Project title + status */}
             <div className="gsap-reveal mb-8 md:mb-12">
               <div className="flex flex-col md:flex-row md:items-baseline gap-3 md:gap-6">
-                <h2 className="font-[family-name:var(--font-glare)] text-[clamp(28px,4vw,56px)] font-normal uppercase tracking-[-0.03em] italic leading-[1.1] text-white transition-opacity duration-300">
+                <h2 className="font-[family-name:var(--font-serif)] text-[clamp(28px,4vw,56px)] font-normal uppercase tracking-[-0.03em] leading-[1.1] text-white transition-opacity duration-300">
                   {PROJECTS[activeProject].title}
                 </h2>
                 <span
@@ -594,10 +594,10 @@ export default function Home() {
 
           <div className="relative z-10 max-w-[1400px] mx-auto px-5 md:px-[6vw]">
             {/* Section label */}
-            <p className="gsap-reveal font-[family-name:var(--font-glare)] italic text-[16px] text-[rgba(255,255,255,0.7)] mb-6">
+            <p className="gsap-reveal font-[family-name:var(--font-serif)] text-[16px] text-[rgba(255,255,255,0.7)] mb-6">
               (Our Beliefs)
             </p>
-            <h2 className="gsap-reveal font-[family-name:var(--font-glare)] text-[clamp(28px,4vw,56px)] font-normal uppercase tracking-[-0.03em] italic leading-[1.1] text-white mb-4">
+            <h2 className="gsap-reveal font-[family-name:var(--font-serif)] text-[clamp(28px,4vw,56px)] font-normal uppercase tracking-[-0.03em] leading-[1.1] text-white mb-4">
               Built on conviction,
               <br className="hidden md:block" /> not convention
             </h2>
@@ -636,10 +636,10 @@ export default function Home() {
         <section className="bg-[#121717] py-20 lg:py-[140px]">
           <div className="max-w-[1400px] mx-auto px-5 md:px-[6vw]">
             {/* Section label */}
-            <p className="gsap-reveal font-[family-name:var(--font-glare)] italic text-[16px] text-[rgba(255,255,255,0.7)] mb-6">
+            <p className="gsap-reveal font-[family-name:var(--font-serif)] text-[16px] text-[rgba(255,255,255,0.7)] mb-6">
               (Amenities)
             </p>
-            <h2 className="gsap-reveal font-[family-name:var(--font-glare)] text-[clamp(28px,4vw,56px)] font-normal uppercase tracking-[-0.03em] italic leading-[1.1] text-white mb-10 lg:mb-14">
+            <h2 className="gsap-reveal font-[family-name:var(--font-serif)] text-[clamp(28px,4vw,56px)] font-normal uppercase tracking-[-0.03em] leading-[1.1] text-white mb-10 lg:mb-14">
               Designed for living
             </h2>
 
@@ -708,10 +708,10 @@ export default function Home() {
         <section className="bg-[#121717] py-20 lg:py-[140px]">
           <div className="max-w-[1400px] mx-auto px-5 md:px-[6vw]">
             {/* Section label */}
-            <p className="gsap-reveal font-[family-name:var(--font-glare)] italic text-[16px] text-[rgba(255,255,255,0.7)] mb-6">
+            <p className="gsap-reveal font-[family-name:var(--font-serif)] text-[16px] text-[rgba(255,255,255,0.7)] mb-6">
               (FAQ)
             </p>
-            <h2 className="gsap-reveal font-[family-name:var(--font-glare)] text-[clamp(28px,4vw,56px)] font-normal uppercase tracking-[-0.03em] italic leading-[1.1] text-white mb-12 lg:mb-16">
+            <h2 className="gsap-reveal font-[family-name:var(--font-serif)] text-[clamp(28px,4vw,56px)] font-normal uppercase tracking-[-0.03em] leading-[1.1] text-white mb-12 lg:mb-16">
               Your questions, answered
             </h2>
 
@@ -729,7 +729,7 @@ export default function Home() {
                     <span className="font-[family-name:var(--font-serif)] text-[14px] text-[rgba(255,255,255,0.4)] font-normal shrink-0 w-10 md:w-12">
                       ( {i + 1} )
                     </span>
-                    <span className="font-[family-name:var(--font-glare)] text-lg md:text-[19px] font-normal uppercase italic tracking-[0.02em] flex-1 text-white">
+                    <span className="font-[family-name:var(--font-serif)] text-lg md:text-[19px] font-normal uppercase tracking-[0.02em] flex-1 text-white">
                       {f.q}
                     </span>
                     <span
@@ -774,10 +774,10 @@ export default function Home() {
 
           <div className="relative z-10 max-w-[1400px] mx-auto px-5 md:px-[6vw] grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <div>
-              <p className="gsap-reveal font-[family-name:var(--font-glare)] italic text-[16px] text-[rgba(255,255,255,0.7)] mb-6">
+              <p className="gsap-reveal font-[family-name:var(--font-serif)] text-[16px] text-[rgba(255,255,255,0.7)] mb-6">
                 (Get in Touch)
               </p>
-              <h2 className="gsap-reveal font-[family-name:var(--font-glare)] text-[clamp(28px,4vw,56px)] font-normal uppercase tracking-[-0.03em] italic leading-[1.1] text-white">
+              <h2 className="gsap-reveal font-[family-name:var(--font-serif)] text-[clamp(28px,4vw,56px)] font-normal uppercase tracking-[-0.03em] leading-[1.1] text-white">
                 Visit Our Sites
                 <br />
                 in Kharkhoda
@@ -875,7 +875,7 @@ export default function Home() {
       <footer className="bg-[#121717] border-t border-[rgba(255,255,255,0.1)] pt-16 pb-8">
         <div className="max-w-[1400px] mx-auto px-5 md:px-[6vw]">
           {/* Section label */}
-          <p className="gsap-reveal font-[family-name:var(--font-glare)] italic text-[16px] text-[rgba(255,255,255,0.5)] mb-10">
+          <p className="gsap-reveal font-[family-name:var(--font-serif)] text-[16px] text-[rgba(255,255,255,0.5)] mb-10">
             (Get in touch)
           </p>
 
