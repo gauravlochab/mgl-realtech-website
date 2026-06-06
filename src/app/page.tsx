@@ -289,41 +289,45 @@ export default function Home() {
         style={{ transition: "all 0.5s cubic-bezier(0.22,1,0.36,1)" }}
       >
         <nav
-          className={`max-w-[1400px] mx-auto px-5 md:px-[6vw] flex items-center justify-between transition-all duration-500 ${
-            scrolled ? "h-[72px]" : "h-[84px]"
+          className={`max-w-[1400px] mx-auto px-5 md:px-10 lg:px-12 grid grid-cols-[auto_1fr_auto] items-center transition-all duration-500 ${
+            scrolled ? "h-[56px]" : "h-[64px]"
           }`}
         >
-          {/* Logo */}
+          {/* Logo — left */}
           <a
             href="#"
-            className="font-[family-name:var(--font-serif)] text-[17px] font-light tracking-[0.22em] uppercase text-white transition-colors duration-500"
+            className="font-[family-name:var(--font-serif)] text-[15px] font-normal tracking-[0.08em] uppercase text-white"
           >
-            MGL<span className="text-[rgba(255,255,255,0.4)]">.</span>
+            MGL
           </a>
 
-          {/* Desktop nav */}
-          <div className="hidden md:flex items-center gap-10">
+          {/* Links — center */}
+          <div className="hidden md:flex items-center justify-center gap-8 lg:gap-12">
             {NAV_LINKS.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
-                className="nav-link-underline relative font-[family-name:var(--font-serif)] text-[11px] tracking-[0.02em] uppercase font-normal text-white transition-colors duration-300"
+                className="nav-link-underline relative font-[family-name:var(--font-serif)] text-[10.5px] tracking-[0.04em] uppercase font-normal text-white/90 hover:text-white transition-colors duration-300"
               >
                 {link.label}
               </a>
             ))}
+          </div>
+
+          {/* Button — right */}
+          <div className="hidden md:flex justify-end">
             <a
               href="#contact"
-              className="px-7 py-2.5 text-[12px] tracking-[0.14em] uppercase rounded-full bg-white text-[#254441] border border-white hover:bg-transparent hover:text-white transition-all duration-300"
+              className="font-[family-name:var(--font-serif)] px-5 py-1.5 text-[10.5px] tracking-[0.04em] uppercase rounded-full bg-white text-[#254441] hover:bg-white/90 transition-all duration-300"
             >
               Book a Visit
             </a>
           </div>
 
-          {/* Hamburger button, mobile only */}
+          {/* Hamburger — mobile only */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="md:hidden relative w-8 h-8 flex flex-col items-center justify-center gap-1.5"
+            className="md:hidden justify-self-end w-8 h-8 flex flex-col items-center justify-center gap-1.5"
             aria-label={menuOpen ? "Close menu" : "Open menu"}
             aria-expanded={menuOpen}
           >
