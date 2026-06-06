@@ -186,25 +186,26 @@ export default function Home() {
 
     // === SCROLL REVEALS — every section ===
     gsap.utils.toArray<HTMLElement>(".gsap-reveal").forEach((el) => {
-      gsap.from(el, {
-        scrollTrigger: { trigger: el, start: "top 85%", once: true },
-        opacity: 0,
-        y: 50,
-        duration: 0.9,
-        ease: "power3.out",
-      });
+      gsap.fromTo(el,
+        { opacity: 0, y: 50 },
+        {
+          scrollTrigger: { trigger: el, start: "top 90%", toggleActions: "play none none none" },
+          opacity: 1, y: 0, duration: 0.9, ease: "power3.out",
+        }
+      );
     });
 
     // === STAGGER REVEALS — stat boxes, belief cards, FAQ items ===
     gsap.utils.toArray<HTMLElement>(".gsap-stagger-parent").forEach((parent) => {
-      gsap.from(parent.children as unknown as HTMLElement[], {
-        scrollTrigger: { trigger: parent, start: "top 85%", once: true },
-        opacity: 0,
-        y: 40,
-        duration: 0.8,
-        ease: "power3.out",
-        stagger: 0.12,
-      });
+      const children = parent.children;
+      if (!children.length) return;
+      gsap.fromTo(children as unknown as HTMLElement[],
+        { opacity: 0, y: 40 },
+        {
+          scrollTrigger: { trigger: parent, start: "top 90%", toggleActions: "play none none none" },
+          opacity: 1, y: 0, duration: 0.8, ease: "power3.out", stagger: 0.12,
+        }
+      );
     });
 
     // === IMAGE PARALLAX — all images with .gsap-parallax ===
@@ -224,11 +225,13 @@ export default function Home() {
 
     // === IMAGE OVERLAY REVEAL ===
     gsap.utils.toArray<HTMLElement>(".img-overlay-reveal").forEach((overlay) => {
-      gsap.to(overlay, {
+      gsap.fromTo(overlay,
+        { scaleY: 1 },
+        {
         scrollTrigger: {
           trigger: overlay.parentElement!,
           start: "top 75%",
-          once: true,
+          toggleActions: "play none none none",
         },
         scaleY: 0,
         duration: 1.2,
