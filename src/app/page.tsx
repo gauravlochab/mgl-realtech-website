@@ -267,7 +267,7 @@ export default function Home() {
         style={{ transition: "all 0.5s cubic-bezier(0.22,1,0.36,1)" }}
       >
         <nav
-          className={`max-w-[1400px] mx-auto px-5 md:px-10 lg:px-12 grid grid-cols-[auto_1fr_auto] items-center transition-all duration-500 ${
+          className={`max-w-[1400px] mx-auto px-5 md:px-10 lg:px-12 flex items-center justify-between transition-all duration-500 ${
             scrolled ? "h-[56px]" : "h-[64px]"
           }`}
         >
@@ -572,7 +572,7 @@ export default function Home() {
 
           <div className="relative z-10 max-w-[1400px] mx-auto px-5 md:px-[6vw]">
             {/* Row 1: 2 frosted cards + body text on right */}
-            <div className="grid grid-cols-1 md:grid-cols-[1fr_1fr_1fr] gap-5 lg:gap-6 items-start">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6 items-start">
               {/* Card 1 */}
               <div className="bg-white/10 backdrop-blur-2xl border border-white/15 rounded-lg p-8 min-h-[240px] flex flex-col justify-center text-center">
                 <h3 className="font-[family-name:var(--font-serif)] text-[20px] font-normal uppercase tracking-[0.02em] leading-tight text-white mb-3">
@@ -603,7 +603,7 @@ export default function Home() {
             </div>
 
             {/* Number labels for row 1 */}
-            <div className="grid grid-cols-1 md:grid-cols-[1fr_1fr_1fr] gap-5 lg:gap-6 mt-2">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6 mt-2">
               <p className="font-[family-name:var(--font-serif)] text-[13px] text-white/40">( 1 )</p>
               <p className="font-[family-name:var(--font-serif)] text-[13px] text-white/40">( 2 )</p>
               <div />
@@ -636,7 +636,7 @@ export default function Home() {
         <section className="bg-[#121717] py-20 lg:py-[140px]">
           <div className="max-w-[1400px] mx-auto px-5 md:px-[6vw]">
             {AMENITIES.map((a, i) => (
-              <div key={i} className={`grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-8 lg:gap-12 items-center ${i > 0 ? "mt-20 lg:mt-32" : ""}`}>
+              <div key={i} className={`grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-8 lg:gap-12 items-center ${i > 0 ? "mt-12 lg:mt-32" : ""}`}>
                 {/* Left — text with vertical accent line */}
                 <div className="flex gap-4">
                   <div className="w-[3px] bg-white/20 shrink-0 hidden lg:block" />
@@ -650,7 +650,7 @@ export default function Home() {
                   </div>
                 </div>
                 {/* Right — overlapping images */}
-                <div className="relative h-[400px] md:h-[500px] lg:h-[600px]">
+                <div className="relative h-[280px] md:h-[400px] lg:h-[600px]">
                   <div className="absolute top-0 right-0 w-[65%] h-[75%] rounded-lg overflow-hidden">
                     <Image src={a.big} alt={a.title} width={600} height={750} className="w-full h-full object-cover" />
                   </div>
