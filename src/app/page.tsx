@@ -666,130 +666,82 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ── AMENITIES ───────────────────────────────────────── */}
+        {/* ── AMENITIES — Elyse layout: text LEFT + overlapping images RIGHT ── */}
         <section className="bg-[#121717] py-20 lg:py-[140px]">
           <div className="max-w-[1400px] mx-auto px-5 md:px-[6vw]">
-            {/* Section label */}
-            <p className="font-[family-name:var(--font-serif)] text-[16px] text-[rgba(255,255,255,0.7)] mb-6">
-              (Amenities)
-            </p>
-            <h2 className="font-[family-name:var(--font-serif)] text-[clamp(28px,4vw,56px)] font-normal uppercase tracking-[-0.03em] leading-[1.1] text-white mb-10 lg:mb-14">
-              Designed for living
-            </h2>
-
-            <div className="">
-              {/* Tabs */}
-              <div className="flex flex-wrap gap-6 md:gap-10 mb-10 lg:mb-14">
-                {AMENITIES.map((a, i) => (
-                  <button
-                    key={i}
-                    onClick={() => setActiveAmenity(i)}
-                    className={`bg-transparent border-none cursor-pointer text-[12px] tracking-[0.14em] uppercase pb-3 transition-all duration-300 font-normal ${
-                      i === activeAmenity
-                        ? "text-white border-b-2 border-b-white"
-                        : "text-[rgba(255,255,255,0.4)] border-b-2 border-b-transparent hover:text-white"
-                    }`}
-                  >
-                    {a.title}
-                  </button>
-                ))}
-              </div>
-
-              {/* Content */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.2fr_0.8fr_1fr] gap-4 lg:gap-6 min-h-0 md:min-h-[300px] lg:min-h-[400px]">
-                <div className="rounded-lg overflow-hidden relative aspect-[4/5] md:aspect-auto group">
-                  {AMENITIES.map((a, i) => (
-                    <Image
-                      key={i}
-                      src={a.big}
-                      alt={a.title}
-                      width={600}
-                      height={750}
-                      className={`gsap-parallax absolute inset-0 w-full h-full object-cover transition-all duration-[1200ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04] ${
-                        i === activeAmenity ? "opacity-100" : "opacity-0"
-                      }`}
-                    />
-                  ))}
-                </div>
-                <div className="rounded-lg overflow-hidden relative aspect-[4/5] md:aspect-auto hidden md:block group">
-                  {AMENITIES.map((a, i) => (
-                    <Image
-                      key={i}
-                      src={a.small}
-                      alt=""
-                      width={400}
-                      height={500}
-                      className={`absolute inset-0 w-full h-full object-cover transition-all duration-[1200ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04] ${
-                        i === activeAmenity ? "opacity-100" : "opacity-0"
-                      }`}
-                    />
-                  ))}
-                </div>
-                <div className="flex flex-col justify-end pb-4 lg:pb-5">
-                  <h3 className="font-[family-name:var(--font-serif)] text-[clamp(24px,2.5vw,32px)] font-normal uppercase tracking-[0.02em] text-white mb-4 transition-opacity duration-500">
-                    {AMENITIES[activeAmenity].title}
-                  </h3>
-                  <p className="font-[family-name:var(--font-inter)] text-[16px] font-light leading-[1.75] text-[rgba(255,255,255,0.65)] transition-opacity duration-500">
-                    {AMENITIES[activeAmenity].desc}
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ── FAQ ─────────────────────────────────────────────── */}
-        <section className="bg-[#121717] py-20 lg:py-[140px]">
-          <div className="max-w-[1400px] mx-auto px-5 md:px-[6vw]">
-            {/* Section label */}
-            <p className="font-[family-name:var(--font-serif)] text-[16px] text-[rgba(255,255,255,0.7)] mb-6">
-              (FAQ)
-            </p>
-            <h2 className="font-[family-name:var(--font-serif)] text-[clamp(28px,4vw,56px)] font-normal uppercase tracking-[-0.03em] leading-[1.1] text-white mb-12 lg:mb-16">
-              Your questions, answered
-            </h2>
-
-            <div className="">
-              {FAQS.map((f, i) => (
-                <div
-                  key={i}
-                  className="border-t border-[rgba(255,255,255,0.12)]"
-                >
-                  <button
-                    onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                    className="w-full bg-transparent border-none cursor-pointer py-6 lg:py-8 flex items-center gap-4 md:gap-6 text-left hover:bg-[rgba(255,255,255,0.02)] transition-colors duration-300"
-                    aria-expanded={openFaq === i}
-                  >
-                    <span className="font-[family-name:var(--font-serif)] text-[14px] text-[rgba(255,255,255,0.4)] font-normal shrink-0 w-10 md:w-12">
-                      ( {i + 1} )
-                    </span>
-                    <span className="font-[family-name:var(--font-serif)] text-lg md:text-[19px] font-normal uppercase tracking-[0.02em] flex-1 text-white">
-                      {f.q}
-                    </span>
-                    <span
-                      className={`text-2xl text-[rgba(255,255,255,0.4)] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] shrink-0 ${
-                        openFaq === i ? "rotate-45" : "rotate-0"
-                      }`}
-                    >
-                      +
-                    </span>
-                  </button>
-                  <div
-                    className={`overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-                      openFaq === i
-                        ? "max-h-[200px] opacity-100"
-                        : "max-h-0 opacity-0"
-                    }`}
-                  >
-                    <p className="font-[family-name:var(--font-inter)] text-[16px] font-light leading-[1.75] text-[rgba(255,255,255,0.55)] pb-6 lg:pb-8 pl-10 md:pl-16 max-w-[600px]">
-                      {f.a}
+            {AMENITIES.map((a, i) => (
+              <div key={i} className={`grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-8 lg:gap-12 items-center ${i > 0 ? "mt-20 lg:mt-32" : ""}`}>
+                {/* Left — text with vertical accent line */}
+                <div className="flex gap-4">
+                  <div className="w-[3px] bg-white/20 shrink-0 hidden lg:block" />
+                  <div>
+                    <h2 className="font-[family-name:var(--font-serif)] text-[clamp(32px,5vw,64px)] font-normal uppercase tracking-[-0.02em] leading-[1.05] text-white mb-6">
+                      {a.title}
+                    </h2>
+                    <p className="font-[family-name:var(--font-inter)] text-[15px] font-light leading-[1.75] text-white/60 max-w-[380px]">
+                      {a.desc}
                     </p>
                   </div>
                 </div>
-              ))}
-              {/* Bottom border for last item */}
-              <div className="border-t border-[rgba(255,255,255,0.12)]" />
+                {/* Right — overlapping images */}
+                <div className="relative h-[400px] md:h-[500px] lg:h-[600px]">
+                  <div className="absolute top-0 right-0 w-[65%] h-[75%] rounded-lg overflow-hidden">
+                    <Image src={a.big} alt={a.title} width={600} height={750} className="w-full h-full object-cover" />
+                  </div>
+                  <div className="absolute bottom-0 left-0 w-[55%] h-[65%] rounded-lg overflow-hidden">
+                    <Image src={a.small} alt="" width={400} height={500} className="w-full h-full object-cover" />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* ── FAQ — Elyse layout: (FAQ) + heading center-right, numbers far-left, questions far-right ── */}
+        <section className="bg-[#121717] py-20 lg:py-[140px]">
+          <div className="max-w-[1400px] mx-auto px-5 md:px-[6vw]">
+            {/* Header: label left, heading right */}
+            <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-6 mb-16 lg:mb-20">
+              <p className="font-[family-name:var(--font-serif)] text-[16px] text-white/70">
+                (FAQ)
+              </p>
+              <h2 className="font-[family-name:var(--font-serif)] text-[clamp(36px,5vw,72px)] font-normal uppercase tracking-[-0.03em] leading-[1.05] text-white">
+                Your questions, answered
+              </h2>
             </div>
+
+            {/* FAQ items — number far-left, question far-right, answer center */}
+            {FAQS.map((f, i) => (
+              <div key={i} className="border-t border-white/10">
+                <button
+                  onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                  className="w-full bg-transparent border-none cursor-pointer py-8 lg:py-10 grid grid-cols-[auto_1fr] lg:grid-cols-[80px_1fr_1fr] gap-4 items-start text-left hover:bg-white/[0.015] transition-colors duration-300"
+                  aria-expanded={openFaq === i}
+                >
+                  {/* Number — far left */}
+                  <span className="font-[family-name:var(--font-serif)] text-[14px] text-white/40">
+                    ( {i + 1} )
+                  </span>
+                  {/* Spacer on desktop */}
+                  <span className="hidden lg:block" />
+                  {/* Question — far right */}
+                  <span className="font-[family-name:var(--font-serif)] text-[clamp(16px,1.4vw,20px)] font-normal uppercase tracking-[0.02em] text-white leading-snug">
+                    {f.q}
+                  </span>
+                </button>
+                {/* Answer — appears in center column */}
+                <div className={`overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${openFaq === i ? "max-h-[250px] opacity-100" : "max-h-0 opacity-0"}`}>
+                  <div className="grid grid-cols-1 lg:grid-cols-[80px_1fr_1fr] gap-4 pb-8">
+                    <span className="hidden lg:block" />
+                    <p className="font-[family-name:var(--font-inter)] text-[15px] font-light leading-[1.75] text-white/55 max-w-[500px]">
+                      {f.a}
+                    </p>
+                    <span className="hidden lg:block" />
+                  </div>
+                </div>
+              </div>
+            ))}
+            <div className="border-t border-white/10" />
           </div>
         </section>
 
@@ -823,12 +775,12 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="bg-[rgba(255,255,255,0.04)] backdrop-blur-xl border border-[rgba(255,255,255,0.08)] rounded-lg p-6 md:p-8 lg:p-10">
-              <h3 className="font-[family-name:var(--font-serif)] text-[26px] font-normal uppercase tracking-[0.02em] text-white">
-                Connect With Us
+            <div className="bg-[#254441] p-8 md:p-10 lg:p-12">
+              <h3 className="font-[family-name:var(--font-serif)] text-[clamp(28px,3vw,48px)] font-normal uppercase tracking-[-0.02em] leading-[1.1] text-white text-center">
+                Envision Your<br />Life at MGL
               </h3>
-              <p className="font-[family-name:var(--font-inter)] text-[14px] text-[rgba(255,255,255,0.5)] mt-1 mb-8">
-                Our team will contact you shortly.
+              <p className="font-[family-name:var(--font-inter)] text-[14px] text-white/60 mt-3 mb-10 text-center">
+                Our manager will contact you as soon as possible.
               </p>
 
               {formSubmitted ? (
@@ -887,17 +839,16 @@ export default function Home() {
                     />
                   </div>
 
-                  <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mt-8">
-                    <button
-                      type="submit"
-                      className="bg-white text-[#254441] px-8 py-3 text-[12px] tracking-[0.14em] uppercase rounded-full cursor-pointer border border-white hover:bg-transparent hover:text-white transition-all duration-400 ease-[cubic-bezier(0.22,1,0.36,1)]"
-                    >
-                      Request a Visit
-                    </button>
-                    <p className="font-[family-name:var(--font-inter)] text-[12px] text-[rgba(255,255,255,0.3)] max-w-[180px]">
-                      By submitting, you agree to our privacy policy.
-                    </p>
-                  </div>
+                  <button
+                    type="submit"
+                    className="w-full bg-white text-[#254441] py-4 text-[12px] tracking-[0.14em] uppercase rounded-full cursor-pointer border border-white hover:bg-transparent hover:text-white transition-all duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] mt-8"
+                  >
+                    Request
+                  </button>
+                  <p className="font-[family-name:var(--font-inter)] text-[11px] text-white/30 mt-4 text-center leading-relaxed">
+                    By sending your request, you&apos;re agreeing to our privacy policy.<br />
+                    We promise to keep your personal information safe and secure.
+                  </p>
                 </form>
               )}
             </div>
@@ -906,42 +857,45 @@ export default function Home() {
       </main>
 
       {/* ── FOOTER ─────────────────────────────────────────── */}
-      <footer className="bg-[#121717] border-t border-[rgba(255,255,255,0.1)] pt-16 pb-8">
+      <footer className="bg-[#121717] border-t border-white/10 pt-20 lg:pt-28 pb-8">
         <div className="max-w-[1400px] mx-auto px-5 md:px-[6vw]">
-          {/* Section label */}
-          <p className="font-[family-name:var(--font-serif)] text-[16px] text-[rgba(255,255,255,0.5)] mb-10">
-            (Get in touch)
-          </p>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+          {/* 3-column: labels + content like Elyse */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16">
+            {/* Column 1 — Get in Touch + Logo */}
             <div>
-              <p className="font-[family-name:var(--font-serif)] text-lg tracking-[0.15em] uppercase text-white">
+              <p className="font-[family-name:var(--font-serif)] text-[18px] text-white/50 mb-6">
+                (Get in touch)
+              </p>
+              <p className="font-[family-name:var(--font-serif)] text-[clamp(28px,3vw,42px)] font-normal uppercase tracking-[0.06em] text-white leading-tight">
                 MGL Realtech
               </p>
-              <p className="font-[family-name:var(--font-inter)] text-[14px] text-[rgba(255,255,255,0.45)] mt-2 leading-relaxed">
-                Premium real estate developer
-                <br />
-                since 2017. North NCR.
-              </p>
             </div>
+            {/* Column 2 — Location */}
             <div>
-              <p className="font-[family-name:var(--font-inter)] text-[16px] font-light leading-snug text-white">
+              <p className="font-[family-name:var(--font-serif)] text-[18px] text-white/50 mb-6">
+                (Location)
+              </p>
+              <p className="font-[family-name:var(--font-inter)] text-[15px] font-light leading-snug text-white">
                 NH 344P, Kharkhoda
               </p>
-              <p className="font-[family-name:var(--font-inter)] text-[16px] font-light text-[rgba(255,255,255,0.6)]">
+              <p className="font-[family-name:var(--font-inter)] text-[15px] font-light text-white/60">
                 Sonipat, Haryana, India
               </p>
             </div>
+            {/* Column 3 — Contact */}
             <div>
+              <p className="font-[family-name:var(--font-serif)] text-[18px] text-white/50 mb-6">
+                (Contact)
+              </p>
               <a
                 href="mailto:info@mglrealtech.com"
-                className="block font-[family-name:var(--font-inter)] text-[16px] font-light text-[rgba(255,255,255,0.8)] hover:text-white transition-colors duration-300"
+                className="block font-[family-name:var(--font-serif)] text-[clamp(16px,1.4vw,22px)] font-normal uppercase tracking-[0.04em] text-white hover:text-white/80 transition-colors duration-300"
               >
                 info@mglrealtech.com
               </a>
               <a
                 href="tel:+916361618181"
-                className="block font-[family-name:var(--font-inter)] text-[16px] font-light text-[rgba(255,255,255,0.8)] hover:text-white transition-colors duration-300 mt-1"
+                className="block font-[family-name:var(--font-serif)] text-[clamp(16px,1.4vw,22px)] font-normal uppercase tracking-[0.04em] text-white hover:text-white/80 transition-colors duration-300 mt-2"
               >
                 +91-6361618181
               </a>
