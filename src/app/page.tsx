@@ -382,7 +382,7 @@ export default function Home() {
           <div className="relative z-10 w-full pb-8 md:pb-12">
             {/* Giant title — centered at the very bottom */}
             <div className="overflow-hidden hero-title-wrap text-center md:-translate-x-[5%]">
-              <h1 className="hero-title font-[family-name:var(--font-serif)] text-[clamp(80px,18vw,260px)] font-light uppercase tracking-[-0.03em] leading-[0.82] text-white">
+              <h1 className="hero-title font-[family-name:var(--font-serif)] text-[clamp(80px,18vw,260px)] font-light italic uppercase tracking-[-0.03em] leading-[0.82] text-white">
                 MGL
               </h1>
             </div>
@@ -417,7 +417,7 @@ export default function Home() {
             <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.4fr_1fr] gap-8 lg:gap-10 items-start">
               {/* Left — label */}
               <div className="">
-                <p className="font-[family-name:var(--font-serif)] text-[16px] italic font-light text-white/50">
+                <p className="font-[family-name:var(--font-inter)] text-[16px] font-normal text-white/50">
                   (About)
                 </p>
               </div>
@@ -451,7 +451,7 @@ export default function Home() {
             </div>
 
             {/* Bottom — massive heading */}
-            <h2 className="font-[family-name:var(--font-serif)] text-[clamp(48px,8vw,110px)] font-light uppercase tracking-[-0.03em] leading-[1.0] text-white -mt-[15%] lg:-mt-[20%] relative z-20 max-w-[650px]">
+            <h2 className="font-[family-name:var(--font-serif)] text-[clamp(48px,8vw,110px)] font-light italic uppercase tracking-[-0.03em] leading-[1.0] text-white -mt-[15%] lg:-mt-[20%] relative z-20 max-w-[650px]">
               Timeless Design Purposeful Development
             </h2>
           </div>
@@ -485,14 +485,14 @@ export default function Home() {
         <section id="projects" className="bg-[#121717] py-20 lg:py-[140px]">
           <div className="max-w-[1400px] mx-auto px-5 md:px-[6vw]">
             {/* Section label */}
-            <p className="font-[family-name:var(--font-serif)] text-[16px] italic font-light text-white/50 mb-6">
+            <p className="font-[family-name:var(--font-inter)] text-[16px] font-normal text-white/50 mb-6">
               (Our Projects)
             </p>
 
             {/* Project title + status */}
             <div className="mb-8 md:mb-12">
               <div className="flex flex-col md:flex-row md:items-baseline gap-3 md:gap-6">
-                <h2 className="font-[family-name:var(--font-serif)] text-[clamp(28px,4vw,56px)] font-light uppercase tracking-[-0.03em] leading-[1.1] text-white transition-opacity duration-300">
+                <h2 className="font-[family-name:var(--font-serif)] text-[clamp(28px,4vw,56px)] font-light italic uppercase tracking-[-0.03em] leading-[1.1] text-white transition-opacity duration-300">
                   {PROJECTS[activeProject].title}
                 </h2>
                 <span
@@ -573,7 +573,7 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6 items-start">
               {/* Card 1 */}
               <div className="bg-white/10 backdrop-blur-2xl border border-white/15 rounded-lg p-8 min-h-[240px] flex flex-col justify-center text-center">
-                <h3 className="font-[family-name:var(--font-serif)] text-[20px] font-light uppercase tracking-[0.02em] leading-tight text-white mb-3">
+                <h3 className="font-[family-name:var(--font-serif)] text-[20px] font-light italic uppercase tracking-[0.02em] leading-tight text-white mb-3">
                   {BELIEFS[0].title}
                 </h3>
                 <p className="font-[family-name:var(--font-inter)] text-[13px] font-light text-white/70 leading-relaxed">
@@ -582,7 +582,7 @@ export default function Home() {
               </div>
               {/* Card 2 */}
               <div className="bg-white/10 backdrop-blur-2xl border border-white/15 rounded-lg p-8 min-h-[240px] flex flex-col justify-center text-center">
-                <h3 className="font-[family-name:var(--font-serif)] text-[20px] font-light uppercase tracking-[0.02em] leading-tight text-white mb-3">
+                <h3 className="font-[family-name:var(--font-serif)] text-[20px] font-light italic uppercase tracking-[0.02em] leading-tight text-white mb-3">
                   {BELIEFS[1].title}
                 </h3>
                 <p className="font-[family-name:var(--font-inter)] text-[13px] font-light text-white/70 leading-relaxed">
@@ -611,7 +611,7 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6 mt-8 border-t border-white/10 pt-8">
               {BELIEFS.slice(2).map((b, i) => (
                 <div key={i} className="bg-white/10 backdrop-blur-2xl border border-white/15 rounded-lg p-8 min-h-[220px] flex flex-col justify-center text-center">
-                  <h3 className="font-[family-name:var(--font-serif)] text-[20px] font-light uppercase tracking-[0.02em] leading-tight text-white mb-3">
+                  <h3 className="font-[family-name:var(--font-serif)] text-[20px] font-light italic uppercase tracking-[0.02em] leading-tight text-white mb-3">
                     {b.title}
                   </h3>
                   <p className="font-[family-name:var(--font-inter)] text-[13px] font-light text-white/70 leading-relaxed">
@@ -639,7 +639,7 @@ export default function Home() {
                 <div className="flex gap-4">
                   <div className="w-[3px] bg-white/20 shrink-0 hidden lg:block" />
                   <div>
-                    <h2 className="font-[family-name:var(--font-serif)] text-[clamp(32px,5vw,64px)] font-light uppercase tracking-[-0.02em] leading-[1.05] text-white mb-6">
+                    <h2 className="font-[family-name:var(--font-serif)] text-[clamp(32px,5vw,64px)] font-light italic uppercase tracking-[-0.02em] leading-[1.05] text-white mb-6">
                       {a.title}
                     </h2>
                     <p className="font-[family-name:var(--font-inter)] text-[15px] font-light leading-[1.75] text-white/60 max-w-[380px]">
@@ -666,10 +666,10 @@ export default function Home() {
           <div className="max-w-[1400px] mx-auto px-5 md:px-[6vw]">
             {/* Header: label left, heading right */}
             <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-6 mb-16 lg:mb-20">
-              <p className="font-[family-name:var(--font-serif)] text-[16px] italic font-light text-white/50">
+              <p className="font-[family-name:var(--font-inter)] text-[16px] font-normal text-white/50">
                 (FAQ)
               </p>
-              <h2 className="font-[family-name:var(--font-serif)] text-[clamp(36px,5vw,72px)] font-light uppercase tracking-[-0.03em] leading-[1.05] text-white">
+              <h2 className="font-[family-name:var(--font-serif)] text-[clamp(36px,5vw,72px)] font-light italic uppercase tracking-[-0.03em] leading-[1.05] text-white">
                 Your questions, answered
               </h2>
             </div>
@@ -689,7 +689,7 @@ export default function Home() {
                   {/* Spacer on desktop */}
                   <span className="hidden lg:block" />
                   {/* Question — far right */}
-                  <span className="font-[family-name:var(--font-serif)] text-[clamp(16px,1.4vw,20px)] font-light uppercase tracking-[0.02em] text-white leading-snug">
+                  <span className="font-[family-name:var(--font-serif)] text-[clamp(16px,1.4vw,20px)] font-light italic uppercase tracking-[0.02em] text-white leading-snug">
                     {f.q}
                   </span>
                 </button>
@@ -724,10 +724,10 @@ export default function Home() {
 
           <div className="relative z-10 max-w-[1400px] mx-auto px-5 md:px-[6vw] grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <div>
-              <p className="font-[family-name:var(--font-serif)] text-[16px] italic font-light text-white/50 mb-6">
+              <p className="font-[family-name:var(--font-inter)] text-[16px] font-normal text-white/50 mb-6">
                 (Get in Touch)
               </p>
-              <h2 className="font-[family-name:var(--font-serif)] text-[clamp(28px,4vw,56px)] font-light uppercase tracking-[-0.03em] leading-[1.1] text-white">
+              <h2 className="font-[family-name:var(--font-serif)] text-[clamp(28px,4vw,56px)] font-light italic uppercase tracking-[-0.03em] leading-[1.1] text-white">
                 Visit Our Sites
                 <br />
                 in Kharkhoda
@@ -740,7 +740,7 @@ export default function Home() {
             </div>
 
             <div className="bg-[#254441] p-8 md:p-10 lg:p-12">
-              <h3 className="font-[family-name:var(--font-serif)] text-[clamp(28px,3vw,48px)] font-light uppercase tracking-[-0.02em] leading-[1.1] text-white text-center">
+              <h3 className="font-[family-name:var(--font-serif)] text-[clamp(28px,3vw,48px)] font-light italic uppercase tracking-[-0.02em] leading-[1.1] text-white text-center">
                 Envision Your<br />Life at MGL
               </h3>
               <p className="font-[family-name:var(--font-inter)] text-[14px] text-white/60 mt-3 mb-10 text-center">
@@ -827,16 +827,16 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16">
             {/* Column 1 — Get in Touch + Logo */}
             <div>
-              <p className="font-[family-name:var(--font-serif)] text-[16px] italic font-light text-white/40 mb-6">
+              <p className="font-[family-name:var(--font-inter)] text-[16px] font-normal text-white/40 mb-6">
                 (Get in touch)
               </p>
-              <p className="font-[family-name:var(--font-serif)] text-[clamp(28px,3vw,42px)] font-light uppercase tracking-[0.06em] text-white leading-tight">
+              <p className="font-[family-name:var(--font-serif)] text-[clamp(28px,3vw,42px)] font-light italic uppercase tracking-[0.06em] text-white leading-tight">
                 MGL Realtech
               </p>
             </div>
             {/* Column 2 — Location */}
             <div>
-              <p className="font-[family-name:var(--font-serif)] text-[16px] italic font-light text-white/40 mb-6">
+              <p className="font-[family-name:var(--font-inter)] text-[16px] font-normal text-white/40 mb-6">
                 (Location)
               </p>
               <p className="font-[family-name:var(--font-inter)] text-[15px] font-light leading-snug text-white">
@@ -848,18 +848,18 @@ export default function Home() {
             </div>
             {/* Column 3 — Contact */}
             <div>
-              <p className="font-[family-name:var(--font-serif)] text-[16px] italic font-light text-white/40 mb-6">
+              <p className="font-[family-name:var(--font-inter)] text-[16px] font-normal text-white/40 mb-6">
                 (Contact)
               </p>
               <a
                 href="mailto:info@mglrealtech.com"
-                className="block font-[family-name:var(--font-serif)] text-[clamp(16px,1.4vw,22px)] font-light uppercase tracking-[0.04em] text-white hover:text-white/80 transition-colors duration-300"
+                className="block font-[family-name:var(--font-serif)] text-[clamp(16px,1.4vw,22px)] font-light italic uppercase tracking-[0.04em] text-white hover:text-white/80 transition-colors duration-300"
               >
                 info@mglrealtech.com
               </a>
               <a
                 href="tel:+916361618181"
-                className="block font-[family-name:var(--font-serif)] text-[clamp(16px,1.4vw,22px)] font-light uppercase tracking-[0.04em] text-white hover:text-white/80 transition-colors duration-300 mt-2"
+                className="block font-[family-name:var(--font-serif)] text-[clamp(16px,1.4vw,22px)] font-light italic uppercase tracking-[0.04em] text-white hover:text-white/80 transition-colors duration-300 mt-2"
               >
                 +91-6361618181
               </a>
