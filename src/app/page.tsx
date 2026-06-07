@@ -180,29 +180,7 @@ export default function Home() {
       )
       // Nav stays visible — no animation that hides it
 
-    // === SCROLL REVEALS — every section ===
-    gsap.utils.toArray<HTMLElement>(".gsap-reveal").forEach((el) => {
-      gsap.fromTo(el,
-        { opacity: 0, y: 50 },
-        {
-          scrollTrigger: { trigger: el, start: "top 90%", toggleActions: "play none none none" },
-          opacity: 1, y: 0, duration: 0.9, ease: "power3.out",
-        }
-      );
-    });
-
-    // === STAGGER REVEALS — stat boxes, belief cards, FAQ items ===
-    gsap.utils.toArray<HTMLElement>(".gsap-stagger-parent").forEach((parent) => {
-      const children = parent.children;
-      if (!children.length) return;
-      gsap.fromTo(children as unknown as HTMLElement[],
-        { opacity: 0, y: 40 },
-        {
-          scrollTrigger: { trigger: parent, start: "top 90%", toggleActions: "play none none none" },
-          opacity: 1, y: 0, duration: 0.8, ease: "power3.out", stagger: 0.12,
-        }
-      );
-    });
+    // Scroll reveals removed — they hid content via opacity:0
 
     // === IMAGE PARALLAX — all images with .gsap-parallax ===
     gsap.utils.toArray<HTMLElement>(".gsap-parallax").forEach((img) => {
@@ -438,14 +416,14 @@ export default function Home() {
             {/* Top row: label | image | text */}
             <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.4fr_1fr] gap-8 lg:gap-10 items-start">
               {/* Left — label */}
-              <div className="gsap-reveal">
+              <div className="">
                 <p className="font-[family-name:var(--font-serif)] text-[18px] text-[rgba(255,255,255,0.7)]">
                   (About)
                 </p>
               </div>
 
               {/* Center — large portrait image */}
-              <div className="gsap-reveal relative overflow-hidden aspect-[3/4]">
+              <div className="relative overflow-hidden aspect-[3/4]">
                 <Image
                   src="/images/about-desktop.avif"
                   alt="Modern luxury interior"
@@ -458,13 +436,13 @@ export default function Home() {
 
               {/* Right — body text */}
               <div className="lg:pt-4">
-                <p className="gsap-reveal font-[family-name:var(--font-inter)] text-[15px] font-light leading-[1.75] text-[rgba(255,255,255,0.65)] tracking-[0.01em]">
+                <p className="font-[family-name:var(--font-inter)] text-[15px] font-light leading-[1.75] text-[rgba(255,255,255,0.65)] tracking-[0.01em]">
                   Every element of MGL Realtech reflects a commitment to excellence.
                   From thoughtfully designed residential spaces to premium
                   commercial developments, we embody a holistic approach
                   to real estate.
                 </p>
-                <p className="gsap-reveal font-[family-name:var(--font-inter)] text-[15px] font-light leading-[1.75] text-[rgba(255,255,255,0.65)] tracking-[0.01em] mt-5">
+                <p className="font-[family-name:var(--font-inter)] text-[15px] font-light leading-[1.75] text-[rgba(255,255,255,0.65)] tracking-[0.01em] mt-5">
                   Whether you&apos;re seeking a dream home, an investment
                   opportunity, or a space that inspires growth, MGL Realtech
                   offers it all.
@@ -473,7 +451,7 @@ export default function Home() {
             </div>
 
             {/* Bottom — massive heading */}
-            <h2 className="gsap-reveal font-[family-name:var(--font-serif)] text-[clamp(40px,6vw,90px)] font-normal uppercase tracking-[-0.03em] leading-[1.05] text-white mt-12 lg:mt-16 max-w-[700px]">
+            <h2 className="font-[family-name:var(--font-serif)] text-[clamp(40px,6vw,90px)] font-normal uppercase tracking-[-0.03em] leading-[1.05] text-white mt-12 lg:mt-16 max-w-[700px]">
               Timeless{" "}Design{" "}
               Purposeful{" "}
               Development
@@ -485,7 +463,7 @@ export default function Home() {
         <section className="bg-[#121717] py-20 lg:py-[140px]">
           <div className="max-w-[1400px] mx-auto px-5 md:px-[6vw]">
             {/* Row 1 — two stats, right-aligned */}
-            <div className="gsap-reveal flex justify-end gap-16 md:gap-24 lg:gap-32">
+            <div className="flex justify-end gap-16 md:gap-24 lg:gap-32">
               <div>
                 <p className="font-[family-name:var(--font-serif)] text-[clamp(60px,8vw,130px)] font-normal leading-none text-white">
                   <span className="gsap-counter" data-target="10">0</span>
@@ -507,7 +485,7 @@ export default function Home() {
             </div>
 
             {/* Row 2 — one stat, left-aligned */}
-            <div className="gsap-reveal mt-12 lg:mt-16">
+            <div className="mt-12 lg:mt-16">
               <p className="font-[family-name:var(--font-serif)] text-[clamp(60px,8vw,130px)] font-normal leading-none text-white">
                 <span className="gsap-counter" data-target="500">0</span>
                 <span className="text-[0.4em] ml-1 font-light text-white/60">+</span>
@@ -518,7 +496,7 @@ export default function Home() {
             </div>
 
             {/* Row 3 — one stat, center-aligned */}
-            <div className="gsap-reveal mt-12 lg:mt-16 flex justify-center">
+            <div className="mt-12 lg:mt-16 flex justify-center">
               <div>
                 <p className="font-[family-name:var(--font-serif)] text-[clamp(60px,8vw,130px)] font-normal leading-none text-white">
                   100
@@ -536,12 +514,12 @@ export default function Home() {
         <section id="projects" className="bg-[#121717] py-20 lg:py-[140px]">
           <div className="max-w-[1400px] mx-auto px-5 md:px-[6vw]">
             {/* Section label */}
-            <p className="gsap-reveal font-[family-name:var(--font-serif)] text-[16px] text-[rgba(255,255,255,0.7)] mb-6">
+            <p className="font-[family-name:var(--font-serif)] text-[16px] text-[rgba(255,255,255,0.7)] mb-6">
               (Our Projects)
             </p>
 
             {/* Project title + status */}
-            <div className="gsap-reveal mb-8 md:mb-12">
+            <div className="mb-8 md:mb-12">
               <div className="flex flex-col md:flex-row md:items-baseline gap-3 md:gap-6">
                 <h2 className="font-[family-name:var(--font-serif)] text-[clamp(28px,4vw,56px)] font-normal uppercase tracking-[-0.03em] leading-[1.1] text-white transition-opacity duration-300">
                   {PROJECTS[activeProject].title}
@@ -565,7 +543,7 @@ export default function Home() {
             </div>
 
             {/* Image + Description */}
-            <div className="gsap-reveal grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-8 lg:gap-14 items-end">
+            <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-8 lg:gap-14 items-end">
               <div className="rounded-lg overflow-hidden aspect-[4/3] relative group">
                 {PROJECTS.map((proj, i) => (
                   <Image
@@ -583,7 +561,7 @@ export default function Home() {
                 ))}
               </div>
               <div>
-                <p className="gsap-reveal font-[family-name:var(--font-inter)] text-[16px] font-light leading-[1.75] text-[rgba(255,255,255,0.65)] transition-opacity duration-500">
+                <p className="font-[family-name:var(--font-inter)] text-[16px] font-light leading-[1.75] text-[rgba(255,255,255,0.65)] transition-opacity duration-500">
                   {PROJECTS[activeProject].desc}
                 </p>
                 <div className="flex gap-3 mt-8">
@@ -613,27 +591,27 @@ export default function Home() {
             src="/images/beliefs-1-desktop.avif"
             alt=""
             fill
-            className="object-cover opacity-[0.08]"
+            className="object-cover opacity-[0.25]"
           />
           {/* Dark overlay on top of image */}
-          <div className="absolute inset-0 bg-[rgba(18,23,23,0.8)]" />
+          <div className="absolute inset-0 bg-[rgba(18,23,23,0.6)]" />
 
           <div className="relative z-10 max-w-[1400px] mx-auto px-5 md:px-[6vw]">
             {/* Section label */}
-            <p className="gsap-reveal font-[family-name:var(--font-serif)] text-[16px] text-[rgba(255,255,255,0.7)] mb-6">
+            <p className="font-[family-name:var(--font-serif)] text-[16px] text-[rgba(255,255,255,0.7)] mb-6">
               (Our Beliefs)
             </p>
-            <h2 className="gsap-reveal font-[family-name:var(--font-serif)] text-[clamp(28px,4vw,56px)] font-normal uppercase tracking-[-0.03em] leading-[1.1] text-white mb-4">
+            <h2 className="font-[family-name:var(--font-serif)] text-[clamp(28px,4vw,56px)] font-normal uppercase tracking-[-0.03em] leading-[1.1] text-white mb-4">
               Built on conviction,
               <br className="hidden md:block" /> not convention
             </h2>
-            <p className="gsap-reveal font-[family-name:var(--font-inter)] text-[16px] font-light leading-[1.75] text-[rgba(255,255,255,0.65)] max-w-[600px] mb-14 lg:mb-16">
+            <p className="font-[family-name:var(--font-inter)] text-[16px] font-light leading-[1.75] text-[rgba(255,255,255,0.65)] max-w-[600px] mb-14 lg:mb-16">
               Five principles that have guided every land purchase, every
               foundation pour, and every handover since 2017.
             </p>
 
             {/* Cards — stagger parent */}
-            <div className="gsap-stagger-parent grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
               {BELIEFS.map((b, i) => (
                 <div
                   key={i}
@@ -662,14 +640,14 @@ export default function Home() {
         <section className="bg-[#121717] py-20 lg:py-[140px]">
           <div className="max-w-[1400px] mx-auto px-5 md:px-[6vw]">
             {/* Section label */}
-            <p className="gsap-reveal font-[family-name:var(--font-serif)] text-[16px] text-[rgba(255,255,255,0.7)] mb-6">
+            <p className="font-[family-name:var(--font-serif)] text-[16px] text-[rgba(255,255,255,0.7)] mb-6">
               (Amenities)
             </p>
-            <h2 className="gsap-reveal font-[family-name:var(--font-serif)] text-[clamp(28px,4vw,56px)] font-normal uppercase tracking-[-0.03em] leading-[1.1] text-white mb-10 lg:mb-14">
+            <h2 className="font-[family-name:var(--font-serif)] text-[clamp(28px,4vw,56px)] font-normal uppercase tracking-[-0.03em] leading-[1.1] text-white mb-10 lg:mb-14">
               Designed for living
             </h2>
 
-            <div className="gsap-reveal">
+            <div className="">
               {/* Tabs */}
               <div className="flex flex-wrap gap-6 md:gap-10 mb-10 lg:mb-14">
                 {AMENITIES.map((a, i) => (
@@ -734,14 +712,14 @@ export default function Home() {
         <section className="bg-[#121717] py-20 lg:py-[140px]">
           <div className="max-w-[1400px] mx-auto px-5 md:px-[6vw]">
             {/* Section label */}
-            <p className="gsap-reveal font-[family-name:var(--font-serif)] text-[16px] text-[rgba(255,255,255,0.7)] mb-6">
+            <p className="font-[family-name:var(--font-serif)] text-[16px] text-[rgba(255,255,255,0.7)] mb-6">
               (FAQ)
             </p>
-            <h2 className="gsap-reveal font-[family-name:var(--font-serif)] text-[clamp(28px,4vw,56px)] font-normal uppercase tracking-[-0.03em] leading-[1.1] text-white mb-12 lg:mb-16">
+            <h2 className="font-[family-name:var(--font-serif)] text-[clamp(28px,4vw,56px)] font-normal uppercase tracking-[-0.03em] leading-[1.1] text-white mb-12 lg:mb-16">
               Your questions, answered
             </h2>
 
-            <div className="gsap-stagger-parent">
+            <div className="">
               {FAQS.map((f, i) => (
                 <div
                   key={i}
@@ -800,22 +778,22 @@ export default function Home() {
 
           <div className="relative z-10 max-w-[1400px] mx-auto px-5 md:px-[6vw] grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <div>
-              <p className="gsap-reveal font-[family-name:var(--font-serif)] text-[16px] text-[rgba(255,255,255,0.7)] mb-6">
+              <p className="font-[family-name:var(--font-serif)] text-[16px] text-[rgba(255,255,255,0.7)] mb-6">
                 (Get in Touch)
               </p>
-              <h2 className="gsap-reveal font-[family-name:var(--font-serif)] text-[clamp(28px,4vw,56px)] font-normal uppercase tracking-[-0.03em] leading-[1.1] text-white">
+              <h2 className="font-[family-name:var(--font-serif)] text-[clamp(28px,4vw,56px)] font-normal uppercase tracking-[-0.03em] leading-[1.1] text-white">
                 Visit Our Sites
                 <br />
                 in Kharkhoda
               </h2>
-              <p className="gsap-reveal font-[family-name:var(--font-inter)] text-[16px] font-light leading-[1.75] text-[rgba(255,255,255,0.6)] max-w-[440px] mt-8">
+              <p className="font-[family-name:var(--font-inter)] text-[16px] font-light leading-[1.75] text-[rgba(255,255,255,0.6)] max-w-[440px] mt-8">
                 See the land, walk the roads, meet the families who already live
                 here. We arrange complimentary site visits every weekend, pick-up
                 from Sonipat or Delhi.
               </p>
             </div>
 
-            <div className="gsap-reveal bg-[rgba(255,255,255,0.04)] backdrop-blur-xl border border-[rgba(255,255,255,0.08)] rounded-lg p-6 md:p-8 lg:p-10">
+            <div className="bg-[rgba(255,255,255,0.04)] backdrop-blur-xl border border-[rgba(255,255,255,0.08)] rounded-lg p-6 md:p-8 lg:p-10">
               <h3 className="font-[family-name:var(--font-serif)] text-[26px] font-normal uppercase tracking-[0.02em] text-white">
                 Connect With Us
               </h3>
@@ -901,11 +879,11 @@ export default function Home() {
       <footer className="bg-[#121717] border-t border-[rgba(255,255,255,0.1)] pt-16 pb-8">
         <div className="max-w-[1400px] mx-auto px-5 md:px-[6vw]">
           {/* Section label */}
-          <p className="gsap-reveal font-[family-name:var(--font-serif)] text-[16px] text-[rgba(255,255,255,0.5)] mb-10">
+          <p className="font-[family-name:var(--font-serif)] text-[16px] text-[rgba(255,255,255,0.5)] mb-10">
             (Get in touch)
           </p>
 
-          <div className="gsap-stagger-parent grid grid-cols-1 md:grid-cols-3 gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
             <div>
               <p className="font-[family-name:var(--font-serif)] text-lg tracking-[0.15em] uppercase text-white">
                 MGL Realtech
