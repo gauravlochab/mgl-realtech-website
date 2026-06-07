@@ -592,53 +592,76 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ── BELIEFS ─────────────────────────────────────────── */}
-        <section className="relative py-20 lg:py-[140px] overflow-hidden bg-[#121717]">
+        {/* ── BELIEFS — Elyse layout: vivid bg, frosted glass cards, 2+3 stagger ── */}
+        <section className="relative py-20 lg:py-[140px] overflow-hidden">
+          {/* Vivid background image — visible through frosted cards */}
           <Image
             src="/images/beliefs-1-desktop.avif"
             alt=""
             fill
-            className="object-cover opacity-[0.25]"
+            className="object-cover"
           />
-          {/* Dark overlay on top of image */}
-          <div className="absolute inset-0 bg-[rgba(18,23,23,0.6)]" />
+          {/* Light overlay — just enough to read white text */}
+          <div className="absolute inset-0 bg-[rgba(18,23,23,0.35)]" />
 
           <div className="relative z-10 max-w-[1400px] mx-auto px-5 md:px-[6vw]">
-            {/* Section label */}
-            <p className="font-[family-name:var(--font-serif)] text-[16px] text-[rgba(255,255,255,0.7)] mb-6">
-              (Our Beliefs)
-            </p>
-            <h2 className="font-[family-name:var(--font-serif)] text-[clamp(28px,4vw,56px)] font-normal uppercase tracking-[-0.03em] leading-[1.1] text-white mb-4">
-              Built on conviction,
-              <br className="hidden md:block" /> not convention
-            </h2>
-            <p className="font-[family-name:var(--font-inter)] text-[16px] font-light leading-[1.75] text-[rgba(255,255,255,0.65)] max-w-[600px] mb-14 lg:mb-16">
-              Five principles that have guided every land purchase, every
-              foundation pour, and every handover since 2017.
-            </p>
+            {/* Row 1: 2 frosted cards + body text on right */}
+            <div className="grid grid-cols-1 md:grid-cols-[1fr_1fr_1fr] gap-5 lg:gap-6 items-start">
+              {/* Card 1 */}
+              <div className="bg-white/10 backdrop-blur-2xl border border-white/15 rounded-lg p-8 min-h-[240px] flex flex-col justify-center text-center">
+                <h3 className="font-[family-name:var(--font-serif)] text-[20px] font-normal uppercase tracking-[0.02em] leading-tight text-white mb-3">
+                  {BELIEFS[0].title}
+                </h3>
+                <p className="font-[family-name:var(--font-inter)] text-[13px] font-light text-white/70 leading-relaxed">
+                  {BELIEFS[0].desc}
+                </p>
+              </div>
+              {/* Card 2 */}
+              <div className="bg-white/10 backdrop-blur-2xl border border-white/15 rounded-lg p-8 min-h-[240px] flex flex-col justify-center text-center">
+                <h3 className="font-[family-name:var(--font-serif)] text-[20px] font-normal uppercase tracking-[0.02em] leading-tight text-white mb-3">
+                  {BELIEFS[1].title}
+                </h3>
+                <p className="font-[family-name:var(--font-inter)] text-[13px] font-light text-white/70 leading-relaxed">
+                  {BELIEFS[1].desc}
+                </p>
+              </div>
+              {/* Body text — right column */}
+              <div className="pt-4">
+                <p className="font-[family-name:var(--font-inter)] text-[14px] font-light leading-[1.75] text-white/70">
+                  At MGL Realtech, we believe that a home is more than a physical space. It is a reflection of your aspirations, well-being, and values.
+                </p>
+                <p className="font-[family-name:var(--font-inter)] text-[14px] font-light leading-[1.75] text-white/70 mt-4">
+                  Our mission is to build developments that balance quality construction, community connection, and lasting value.
+                </p>
+              </div>
+            </div>
 
-            {/* Cards — stagger parent */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-              {BELIEFS.map((b, i) => (
-                <div
-                  key={i}
-                  className={`bg-[rgba(255,255,255,0.04)] backdrop-blur-xl border border-[rgba(255,255,255,0.08)] rounded-lg p-10 min-h-[220px] flex flex-col justify-between hover:-translate-y-1 hover:bg-[rgba(255,255,255,0.07)] hover:border-[rgba(255,255,255,0.15)] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-                    i === 3 ? "lg:col-start-1" : ""
-                  } ${i === 4 ? "lg:col-start-2" : ""}`}
-                >
-                  <div>
-                    <p className="font-[family-name:var(--font-serif)] text-[14px] font-normal text-[rgba(255,255,255,0.5)] mb-4">
-                      ( {i + 1} )
-                    </p>
-                    <h3 className="font-[family-name:var(--font-serif)] text-[26px] font-normal uppercase tracking-[0.02em] leading-tight text-white mb-3">
-                      {b.title}
-                    </h3>
-                    <p className="font-[family-name:var(--font-inter)] text-[15px] font-normal text-[rgba(255,255,255,0.55)] leading-relaxed">
-                      {b.desc}
-                    </p>
-                  </div>
+            {/* Number labels for row 1 */}
+            <div className="grid grid-cols-1 md:grid-cols-[1fr_1fr_1fr] gap-5 lg:gap-6 mt-2">
+              <p className="font-[family-name:var(--font-serif)] text-[13px] text-white/40">( 1 )</p>
+              <p className="font-[family-name:var(--font-serif)] text-[13px] text-white/40">( 2 )</p>
+              <div />
+            </div>
+
+            {/* Row 2: 3 frosted cards */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6 mt-8 border-t border-white/10 pt-8">
+              {BELIEFS.slice(2).map((b, i) => (
+                <div key={i} className="bg-white/10 backdrop-blur-2xl border border-white/15 rounded-lg p-8 min-h-[220px] flex flex-col justify-center text-center">
+                  <h3 className="font-[family-name:var(--font-serif)] text-[20px] font-normal uppercase tracking-[0.02em] leading-tight text-white mb-3">
+                    {b.title}
+                  </h3>
+                  <p className="font-[family-name:var(--font-inter)] text-[13px] font-light text-white/70 leading-relaxed">
+                    {b.desc}
+                  </p>
                 </div>
               ))}
+            </div>
+
+            {/* Number labels for row 2 */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6 mt-2">
+              <p className="font-[family-name:var(--font-serif)] text-[13px] text-white/40">( 3 )</p>
+              <p className="font-[family-name:var(--font-serif)] text-[13px] text-white/40">( 4 )</p>
+              <p className="font-[family-name:var(--font-serif)] text-[13px] text-white/40">( 5 )</p>
             </div>
           </div>
         </section>
