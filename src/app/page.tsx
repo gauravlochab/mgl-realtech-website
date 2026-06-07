@@ -417,7 +417,7 @@ export default function Home() {
             <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.4fr_1fr] gap-8 lg:gap-10 items-start">
               {/* Left — label */}
               <div className="">
-                <p className="font-[family-name:var(--font-serif)] text-[18px] text-[rgba(255,255,255,0.7)]">
+                <p className="font-[family-name:var(--font-serif)] text-[16px] italic font-light text-white/50">
                   (About)
                 </p>
               </div>
@@ -485,7 +485,7 @@ export default function Home() {
         <section id="projects" className="bg-[#121717] py-20 lg:py-[140px]">
           <div className="max-w-[1400px] mx-auto px-5 md:px-[6vw]">
             {/* Section label */}
-            <p className="font-[family-name:var(--font-serif)] text-[16px] text-[rgba(255,255,255,0.7)] mb-6">
+            <p className="font-[family-name:var(--font-serif)] text-[16px] italic font-light text-white/50 mb-6">
               (Our Projects)
             </p>
 
@@ -666,7 +666,7 @@ export default function Home() {
           <div className="max-w-[1400px] mx-auto px-5 md:px-[6vw]">
             {/* Header: label left, heading right */}
             <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-6 mb-16 lg:mb-20">
-              <p className="font-[family-name:var(--font-serif)] text-[16px] text-white/70">
+              <p className="font-[family-name:var(--font-serif)] text-[16px] italic font-light text-white/50">
                 (FAQ)
               </p>
               <h2 className="font-[family-name:var(--font-serif)] text-[clamp(36px,5vw,72px)] font-normal uppercase tracking-[-0.03em] leading-[1.05] text-white">
@@ -724,7 +724,7 @@ export default function Home() {
 
           <div className="relative z-10 max-w-[1400px] mx-auto px-5 md:px-[6vw] grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <div>
-              <p className="font-[family-name:var(--font-serif)] text-[16px] text-[rgba(255,255,255,0.7)] mb-6">
+              <p className="font-[family-name:var(--font-serif)] text-[16px] italic font-light text-white/50 mb-6">
                 (Get in Touch)
               </p>
               <h2 className="font-[family-name:var(--font-serif)] text-[clamp(28px,4vw,56px)] font-normal uppercase tracking-[-0.03em] leading-[1.1] text-white">
@@ -827,7 +827,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16">
             {/* Column 1 — Get in Touch + Logo */}
             <div>
-              <p className="font-[family-name:var(--font-serif)] text-[18px] text-white/50 mb-6">
+              <p className="font-[family-name:var(--font-serif)] text-[16px] italic font-light text-white/40 mb-6">
                 (Get in touch)
               </p>
               <p className="font-[family-name:var(--font-serif)] text-[clamp(28px,3vw,42px)] font-normal uppercase tracking-[0.06em] text-white leading-tight">
@@ -836,7 +836,7 @@ export default function Home() {
             </div>
             {/* Column 2 — Location */}
             <div>
-              <p className="font-[family-name:var(--font-serif)] text-[18px] text-white/50 mb-6">
+              <p className="font-[family-name:var(--font-serif)] text-[16px] italic font-light text-white/40 mb-6">
                 (Location)
               </p>
               <p className="font-[family-name:var(--font-inter)] text-[15px] font-light leading-snug text-white">
@@ -848,7 +848,7 @@ export default function Home() {
             </div>
             {/* Column 3 — Contact */}
             <div>
-              <p className="font-[family-name:var(--font-serif)] text-[18px] text-white/50 mb-6">
+              <p className="font-[family-name:var(--font-serif)] text-[16px] italic font-light text-white/40 mb-6">
                 (Contact)
               </p>
               <a
