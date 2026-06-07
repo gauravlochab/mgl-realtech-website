@@ -389,7 +389,7 @@ export default function Home() {
           </div>
 
           {/* Subtitle + description — positioned above the title on the right side */}
-          <div className="absolute right-5 md:right-10 lg:right-12 z-20 max-w-[280px] lg:max-w-[320px] bottom-[clamp(80px,10vw,180px)]">
+          <div className="absolute left-5 bottom-[55%] md:left-auto md:bottom-auto md:right-10 lg:right-12 md:top-auto z-20 max-w-[280px] lg:max-w-[320px] md:bottom-[clamp(80px,10vw,180px)]">
             <div className="hero-subtitle">
               <p className="font-[family-name:var(--font-serif)] text-[clamp(14px,1.4vw,20px)] uppercase tracking-[0.02em] leading-snug text-white/70">
                 Holistic Living<br />In Perfect Harmony
@@ -462,49 +462,56 @@ export default function Home() {
         {/* ── STATS — Elyse staggered layout ────────────────── */}
         <section className="bg-[#121717] py-20 lg:py-[140px]">
           <div className="max-w-[1400px] mx-auto px-5 md:px-[6vw]">
-            {/* Row 1 — two stats, right-aligned */}
-            <div className="flex justify-end gap-16 md:gap-24 lg:gap-32">
-              <div>
-                <p className="font-[family-name:var(--font-serif)] text-[clamp(60px,8vw,130px)] font-normal leading-none text-white">
-                  <span className="gsap-counter" data-target="10">0</span>
-                  <span className="text-[0.4em] ml-1 font-light text-white/60">+</span>
-                </p>
-                <p className="font-[family-name:var(--font-inter)] text-[13px] font-light leading-[1.5] text-white/50 mt-2">
-                  projects delivered across<br />Kharkhoda-Sonipat.
-                </p>
-              </div>
-              <div>
-                <p className="font-[family-name:var(--font-serif)] text-[clamp(60px,8vw,130px)] font-normal leading-none text-white">
-                  <span className="gsap-counter" data-target="7">0</span>
-                  <span className="text-[0.4em] ml-1 font-light text-white/60">+</span>
-                </p>
-                <p className="font-[family-name:var(--font-inter)] text-[13px] font-light leading-[1.5] text-white/50 mt-2">
-                  years of on-time delivery,<br />zero delays.
-                </p>
-              </div>
+            {/* Mobile: compact 2-col grid. Desktop: staggered layout */}
+            <div className="grid grid-cols-2 gap-8 md:hidden">
+              {[
+                { target: "10", suffix: "+", line1: "projects delivered", line2: "across North NCR." },
+                { target: "7", suffix: "+", line1: "years of on-time", line2: "delivery." },
+                { target: "500", suffix: "+", line1: "families settled in", line2: "MGL colonies." },
+                { target: "100", suffix: "%", line1: "DTCP approved", line2: "plots." },
+              ].map((s, i) => (
+                <div key={i} className="border-t border-white/10 pt-6">
+                  <p className="font-[family-name:var(--font-serif)] text-[48px] font-normal leading-none text-white">
+                    <span className="gsap-counter" data-target={s.target}>0</span>
+                    <span className="text-[0.4em] ml-1 text-white/50">{s.suffix}</span>
+                  </p>
+                  <p className="font-[family-name:var(--font-inter)] text-[12px] font-light text-white/50 mt-2">{s.line1}<br />{s.line2}</p>
+                </div>
+              ))}
             </div>
 
-            {/* Row 2 — one stat, left-aligned */}
-            <div className="mt-12 lg:mt-16">
-              <p className="font-[family-name:var(--font-serif)] text-[clamp(60px,8vw,130px)] font-normal leading-none text-white">
-                <span className="gsap-counter" data-target="500">0</span>
-                <span className="text-[0.4em] ml-1 font-light text-white/60">+</span>
-              </p>
-              <p className="font-[family-name:var(--font-inter)] text-[13px] font-light leading-[1.5] text-white/50 mt-2">
-                families settled in MGL<br />colonies across North NCR.
-              </p>
-            </div>
-
-            {/* Row 3 — one stat, center-aligned */}
-            <div className="mt-12 lg:mt-16 flex justify-center">
-              <div>
+            {/* Desktop: staggered asymmetric layout */}
+            <div className="hidden md:block">
+              <div className="flex justify-end gap-24 lg:gap-32">
+                <div>
+                  <p className="font-[family-name:var(--font-serif)] text-[clamp(60px,8vw,130px)] font-normal leading-none text-white">
+                    <span className="gsap-counter" data-target="10">0</span>
+                    <span className="text-[0.4em] ml-1 font-light text-white/60">+</span>
+                  </p>
+                  <p className="font-[family-name:var(--font-inter)] text-[13px] font-light leading-[1.5] text-white/50 mt-2">projects delivered across<br />Kharkhoda-Sonipat.</p>
+                </div>
+                <div>
+                  <p className="font-[family-name:var(--font-serif)] text-[clamp(60px,8vw,130px)] font-normal leading-none text-white">
+                    <span className="gsap-counter" data-target="7">0</span>
+                    <span className="text-[0.4em] ml-1 font-light text-white/60">+</span>
+                  </p>
+                  <p className="font-[family-name:var(--font-inter)] text-[13px] font-light leading-[1.5] text-white/50 mt-2">years of on-time delivery,<br />zero delays.</p>
+                </div>
+              </div>
+              <div className="mt-16">
                 <p className="font-[family-name:var(--font-serif)] text-[clamp(60px,8vw,130px)] font-normal leading-none text-white">
-                  100
-                  <span className="text-[0.4em] ml-1 font-light text-white/60">%</span>
+                  <span className="gsap-counter" data-target="500">0</span>
+                  <span className="text-[0.4em] ml-1 font-light text-white/60">+</span>
                 </p>
-                <p className="font-[family-name:var(--font-inter)] text-[13px] font-light leading-[1.5] text-white/50 mt-2">
-                  DTCP approved plots,<br />clean titles guaranteed.
-                </p>
+                <p className="font-[family-name:var(--font-inter)] text-[13px] font-light leading-[1.5] text-white/50 mt-2">families settled in MGL<br />colonies across North NCR.</p>
+              </div>
+              <div className="mt-16 flex justify-center">
+                <div>
+                  <p className="font-[family-name:var(--font-serif)] text-[clamp(60px,8vw,130px)] font-normal leading-none text-white">
+                    100<span className="text-[0.4em] ml-1 font-light text-white/60">%</span>
+                  </p>
+                  <p className="font-[family-name:var(--font-inter)] text-[13px] font-light leading-[1.5] text-white/50 mt-2">DTCP approved plots,<br />clean titles guaranteed.</p>
+                </div>
               </div>
             </div>
           </div>
