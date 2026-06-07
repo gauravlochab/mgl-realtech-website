@@ -468,7 +468,7 @@ export default function Home() {
                 { target: "100", suffix: "%", label: "DTCP approved plots, clean titles" },
               ].map((s, i) => (
                 <div key={i} className={`py-8 md:py-10 md:px-8 lg:px-10 ${i > 0 ? "md:border-l md:border-[rgba(244,241,232,0.1)]" : ""} ${i >= 2 ? "border-t md:border-t-0 border-[rgba(244,241,232,0.1)]" : ""}`}>
-                  <p className="font-[family-name:var(--font-serif)] text-[clamp(88px,11vw,160px)] font-light leading-[0.78] tracking-[-0.08em] text-[#f4f1e8]">
+                  <p className="font-[family-name:var(--font-serif)] text-[clamp(56px,7vw,96px)] font-light leading-[0.9] tracking-[-0.04em] text-[#f4f1e8]">
                     <span className="gsap-counter" data-target={s.target}>0</span>
                     <span className="font-[family-name:var(--font-serif)] text-[28px] font-normal ml-1">{s.suffix}</span>
                   </p>
