@@ -451,10 +451,8 @@ export default function Home() {
             </div>
 
             {/* Bottom — massive heading */}
-            <h2 className="font-[family-name:var(--font-serif)] text-[clamp(40px,6vw,90px)] font-normal uppercase tracking-[-0.03em] leading-[1.05] text-white mt-12 lg:mt-16 max-w-[700px]">
-              Timeless{" "}Design{" "}
-              Purposeful{" "}
-              Development
+            <h2 className="font-[family-name:var(--font-serif)] text-[clamp(48px,8vw,110px)] font-normal uppercase tracking-[-0.03em] leading-[1.0] text-white -mt-[15%] lg:-mt-[20%] relative z-20 max-w-[650px]">
+              Timeless Design Purposeful Development
             </h2>
           </div>
         </section>
