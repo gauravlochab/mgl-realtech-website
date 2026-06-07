@@ -1,18 +1,18 @@
 import type { Metadata, Viewport } from "next";
-import { Bodoni_Moda, Inter } from "next/font/google";
+import { Cormorant_Garamond, Inter } from "next/font/google";
 import "./globals.css";
 
-const bodoniSerif = Bodoni_Moda({
+const cormorantSerif = Cormorant_Garamond({
   variable: "--font-serif",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["300", "400", "500", "600", "700"],
   display: "swap",
 });
 
-const bodoniGlare = Bodoni_Moda({
+const cormorantGlare = Cormorant_Garamond({
   variable: "--font-glare",
   subsets: ["latin"],
-  weight: ["400", "500"],
+  weight: ["300", "400", "500"],
   style: ["normal", "italic"],
   display: "swap",
 });
@@ -67,7 +67,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${bodoniSerif.variable} ${bodoniGlare.variable} ${inter.variable}`}
+      className={`${cormorantSerif.variable} ${cormorantGlare.variable} ${inter.variable}`}
     >
       <body className="mgl-site antialiased">{children}</body>
     </html>
