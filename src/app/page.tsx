@@ -451,8 +451,8 @@ export default function Home() {
             </div>
 
             {/* Bottom — massive heading */}
-            <h2 className="font-[family-name:var(--font-serif)] text-[clamp(58px,7vw,98px)] font-normal uppercase tracking-[-0.065em] leading-[0.88] text-[#f4f1e8] mt-10 lg:mt-14 max-w-[450px]">
-              <span className="italic tracking-[-0.075em]">Timeless</span> Design <span className="italic tracking-[-0.075em]">Purposeful</span> Development
+            <h2 className="font-[family-name:var(--font-serif)] text-[clamp(42px,6vw,82px)] font-normal uppercase tracking-[-0.05em] leading-[0.92] text-[#f4f1e8] -mt-[25%] lg:-mt-[35%] relative z-20 max-w-[400px]">
+              <span className="italic tracking-[-0.06em]">Timeless</span>{" "}Design{" "}<span className="italic tracking-[-0.06em]">Purposeful</span>{" "}Development
             </h2>
           </div>
         </section>
