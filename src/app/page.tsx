@@ -339,7 +339,7 @@ export default function Home() {
               key={link.label}
               href={link.href}
               onClick={closeMenu}
-              className={`font-[family-name:var(--font-serif)] text-4xl font-light tracking-wide uppercase text-white transition-all duration-500 ${
+              className={`font-[family-name:var(--font-serif)] text-3xl font-light tracking-wide uppercase text-white text-center transition-all duration-500 ${
                 menuOpen
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-4"
