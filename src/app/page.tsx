@@ -18,6 +18,7 @@ const NAV_LINKS = [
   { label: "MGL Greens", href: "#projects" },
   { label: "Mystical Meadows", href: "#projects" },
   { label: "MGL Vantage", href: "#projects" },
+  { label: "Global Presence", href: "#presence" },
 ];
 
 const PROJECTS = [
@@ -44,6 +45,23 @@ const PROJECTS = [
     status: "Upcoming",
     desc: "Strategic commercial spaces with prime highway visibility, modern infrastructure, and walk-to-work convenience for the surrounding residential catchment.",
     image: "/images/livings-3.avif",
+  },
+];
+
+const LOCATIONS = [
+  {
+    country: "India",
+    city: "Kharkhoda, North NCR",
+    role: "Real-estate development",
+    note: "DTCP-approved residential plots, villa floors, and commercial spaces near NH-344P, Sonipat, Haryana.",
+    address: "NH 344P, Kharkhoda, Sonipat, Haryana",
+  },
+  {
+    country: "UAE",
+    city: "Abu Dhabi",
+    role: "Real-estate brokerage & advisory",
+    note: "Buying, selling, and renting; property and facilities management; and project-finance advisory covering risk analysis, fund raising, and deal structuring.",
+    address: "1101, Bin Ghanem Tower, Abu Dhabi — P.O. Box 6925",
   },
 ];
 
@@ -126,6 +144,8 @@ export default function Home() {
   const [activeAmenity, setActiveAmenity] = useState(0);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [formSubmitting, setFormSubmitting] = useState(false);
+  const [formError, setFormError] = useState<string | null>(null);
 
   // ── Scroll handler (header bg) ────────────────────────────
   useEffect(() => {
@@ -234,8 +254,11 @@ export default function Home() {
   }, []);
 
   // ── Form handler ─────────────────────────────────────────
+  // Posts to Web3Forms — works from a fully static site (no backend needed).
+  // Set NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY in Cloudflare Pages env (or .env.local).
+  // Get a free key at https://web3forms.com (the access key is public-safe to ship).
   const handleFormSubmit = useCallback(
-    (e: React.FormEvent<HTMLFormElement>) => {
+    async (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       const form = e.currentTarget;
       const emailInput = form.querySelector(
@@ -246,9 +269,29 @@ export default function Home() {
         emailInput.reportValidity();
         return;
       }
-      setFormSubmitted(true);
-      setTimeout(() => setFormSubmitted(false), 5000);
-      form.reset();
+
+      setFormError(null);
+      setFormSubmitting(true);
+      try {
+        const res = await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: { Accept: "application/json" },
+          body: new FormData(form),
+        });
+        const data = await res.json();
+        if (!res.ok || !data.success) {
+          throw new Error(data.message || "Submission failed");
+        }
+        setFormSubmitted(true);
+        form.reset();
+        setTimeout(() => setFormSubmitted(false), 6000);
+      } catch {
+        setFormError(
+          "Something went wrong — please call +91-6361618181 or try again."
+        );
+      } finally {
+        setFormSubmitting(false);
+      }
     },
     []
   );
@@ -556,6 +599,48 @@ export default function Home() {
           </div>
         </section>
 
+        {/* ── WHERE WE OPERATE — India + Abu Dhabi ──────────── */}
+        <section id="presence" className="bg-[#0b1411] py-20 lg:py-[140px]">
+          <div className="max-w-[1400px] mx-auto px-5 md:px-[6vw]">
+            <p className="font-[family-name:var(--font-serif)] italic text-[20px] font-normal tracking-[-0.04em] text-[rgba(244,241,232,0.82)] mb-6">
+              (Where We Operate)
+            </p>
+            <h2 className="font-[family-name:var(--font-serif)] text-[clamp(42px,6vw,82px)] font-normal uppercase tracking-[-0.05em] leading-[0.92] text-[#f4f1e8] max-w-[600px]">
+              Two Markets, One Standard
+            </h2>
+            <p className="font-[family-name:var(--font-inter)] text-[14px] font-normal leading-[1.5] tracking-[-0.01em] text-[rgba(244,241,232,0.78)] mt-6 max-w-[620px]">
+              MGL Realtech operates across India and Abu Dhabi — developing plotted
+              townships and commercial spaces in North NCR, and running real-estate
+              brokerage, property management, and project-finance advisory in the UAE.
+            </p>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-8 mt-12 lg:mt-16">
+              {LOCATIONS.map((loc) => (
+                <div
+                  key={loc.city}
+                  className="bg-[rgba(244,241,232,0.06)] backdrop-blur-2xl border border-[rgba(244,241,232,0.15)] rounded-lg p-8 lg:p-10"
+                >
+                  <p className="font-[family-name:var(--font-inter)] text-[11px] uppercase tracking-[0.18em] text-[rgba(244,241,232,0.55)]">
+                    {loc.country}
+                  </p>
+                  <h3 className="font-[family-name:var(--font-serif)] text-[clamp(28px,3vw,44px)] font-normal uppercase tracking-[-0.04em] leading-[1] text-[#f4f1e8] mt-2">
+                    {loc.city}
+                  </h3>
+                  <p className="font-[family-name:var(--font-inter)] text-[13px] font-medium uppercase tracking-[0.08em] text-[rgba(244,241,232,0.82)] mt-4">
+                    {loc.role}
+                  </p>
+                  <p className="font-[family-name:var(--font-inter)] text-[14px] font-normal leading-[1.5] tracking-[-0.01em] text-[rgba(244,241,232,0.66)] mt-3">
+                    {loc.note}
+                  </p>
+                  <p className="font-[family-name:var(--font-inter)] text-[12px] font-normal leading-[1.4] tracking-[-0.01em] text-[rgba(244,241,232,0.5)] mt-6">
+                    {loc.address}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* ── BELIEFS — Elyse layout: vivid bg, frosted glass cards, 2+3 stagger ── */}
         <section className="relative py-20 lg:py-[140px] overflow-hidden">
           {/* Vivid background image — visible through frosted cards */}
@@ -759,6 +844,29 @@ export default function Home() {
                 </div>
               ) : (
                 <form onSubmit={handleFormSubmit} noValidate>
+                  <input
+                    type="hidden"
+                    name="access_key"
+                    value={process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY ?? ""}
+                  />
+                  <input
+                    type="hidden"
+                    name="subject"
+                    value="New site enquiry — MGL Realtech"
+                  />
+                  <input
+                    type="hidden"
+                    name="from_name"
+                    value="MGL Realtech Website"
+                  />
+                  {/* Honeypot — bots fill this, humans don't */}
+                  <input
+                    type="checkbox"
+                    name="botcheck"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    style={{ display: "none" }}
+                  />
                   <div className="mb-5">
                     <label htmlFor="form-name" className="sr-only">
                       Name
@@ -805,10 +913,16 @@ export default function Home() {
 
                   <button
                     type="submit"
-                    className="w-full bg-white text-[#254441] py-4 text-[12px] tracking-[0.14em] uppercase rounded-full cursor-pointer border border-white hover:bg-transparent hover:text-[#f4f1e8] transition-all duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] mt-8"
+                    disabled={formSubmitting}
+                    className="w-full bg-white text-[#254441] py-4 text-[12px] tracking-[0.14em] uppercase rounded-full cursor-pointer border border-white hover:bg-transparent hover:text-[#f4f1e8] transition-all duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] mt-8 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    Request
+                    {formSubmitting ? "Sending…" : "Request"}
                   </button>
+                  {formError && (
+                    <p className="font-[family-name:var(--font-inter)] text-[12px] text-red-300 mt-4 text-center">
+                      {formError}
+                    </p>
+                  )}
                   <p className="font-[family-name:var(--font-inter)] text-[11px] text-[rgba(244,241,232,0.3)] mt-4 text-center leading-relaxed">
                     By sending your request, you&apos;re agreeing to our privacy policy.<br />
                     We promise to keep your personal information safe and secure.
@@ -844,6 +958,12 @@ export default function Home() {
               </p>
               <p className="font-[family-name:var(--font-inter)] text-[13px] font-normal leading-[1.22] tracking-[-0.01em] text-[rgba(244,241,232,0.76)]">
                 Sonipat, Haryana, India
+              </p>
+              <p className="font-[family-name:var(--font-inter)] text-[13px] font-normal leading-[1.22] tracking-[-0.01em] text-[#f4f1e8] mt-4">
+                1101, Bin Ghanem Tower, Abu Dhabi
+              </p>
+              <p className="font-[family-name:var(--font-inter)] text-[13px] font-normal leading-[1.22] tracking-[-0.01em] text-[rgba(244,241,232,0.76)]">
+                P.O. Box 6925, UAE
               </p>
             </div>
             {/* Column 3 — Contact */}
@@ -920,21 +1040,6 @@ export default function Home() {
         </svg>
       </a>
 
-      {/* ── Scroll indicator bounce animation ─────────────── */}
-      <style jsx>{`
-        @keyframes bounce-gentle {
-          0%,
-          100% {
-            transform: translateX(-50%) translateY(0);
-          }
-          50% {
-            transform: translateX(-50%) translateY(-8px);
-          }
-        }
-        .animate-bounce-gentle {
-          animation: bounce-gentle 2s ease-in-out infinite;
-        }
-      `}</style>
     </>
   );
 }
