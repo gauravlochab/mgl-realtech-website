@@ -48,23 +48,6 @@ const PROJECTS = [
   },
 ];
 
-const LOCATIONS = [
-  {
-    country: "India",
-    city: "Kharkhoda, North NCR",
-    role: "Real-estate development",
-    note: "DTCP-approved residential plots, villa floors, and commercial spaces near NH-344P, Sonipat, Haryana.",
-    address: "NH 344P, Kharkhoda, Sonipat, Haryana",
-  },
-  {
-    country: "UAE",
-    city: "Abu Dhabi",
-    role: "Real-estate brokerage & advisory",
-    note: "Buying, selling, and renting; property and facilities management; and project-finance advisory covering risk analysis, fund raising, and deal structuring.",
-    address: "1101, Bin Ghanem Tower, Abu Dhabi — P.O. Box 6925",
-  },
-];
-
 const BELIEFS = [
   {
     title: "Zero-Delay Track Record",
@@ -599,45 +582,84 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ── WHERE WE OPERATE — India + Abu Dhabi ──────────── */}
+        {/* ── WHERE WE OPERATE — North NCR, served from the Gulf ── */}
         <section id="presence" className="bg-[#0b1411] py-20 lg:py-[140px]">
           <div className="max-w-[1400px] mx-auto px-5 md:px-[6vw]">
             <p className="font-[family-name:var(--font-serif)] italic text-[20px] font-normal tracking-[-0.04em] text-[rgba(244,241,232,0.82)] mb-6">
               (Where We Operate)
             </p>
-            <h2 className="font-[family-name:var(--font-serif)] text-[clamp(42px,6vw,82px)] font-normal uppercase tracking-[-0.05em] leading-[0.92] text-[#f4f1e8] max-w-[600px]">
-              Two Markets, One Standard
+            <h2 className="font-[family-name:var(--font-serif)] text-[clamp(42px,6vw,82px)] font-normal uppercase tracking-[-0.05em] leading-[0.92] text-[#f4f1e8] max-w-[640px]">
+              North NCR, Served From the Gulf
             </h2>
-            <p className="font-[family-name:var(--font-inter)] text-[14px] font-normal leading-[1.5] tracking-[-0.01em] text-[rgba(244,241,232,0.78)] mt-6 max-w-[620px]">
-              MGL Realtech operates across India and Abu Dhabi — developing plotted
-              townships and commercial spaces in North NCR, and running real-estate
-              brokerage, property management, and project-finance advisory in the UAE.
+            <p className="font-[family-name:var(--font-inter)] text-[14px] font-normal leading-[1.5] tracking-[-0.01em] text-[rgba(244,241,232,0.78)] mt-6 max-w-[640px]">
+              Many of North NCR&apos;s homebuyers live and work in the Gulf. So we
+              are there too — with an office in Abu Dhabi where the journey can
+              start, and a team in Kharkhoda who builds. One relationship, both
+              ends of the move.
             </p>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-8 mt-12 lg:mt-16">
-              {LOCATIONS.map((loc) => (
-                <div
-                  key={loc.city}
-                  className="bg-[rgba(244,241,232,0.06)] backdrop-blur-2xl border border-[rgba(244,241,232,0.15)] rounded-lg p-8 lg:p-10"
-                >
-                  <p className="font-[family-name:var(--font-inter)] text-[11px] uppercase tracking-[0.18em] text-[rgba(244,241,232,0.55)]">
-                    {loc.country}
-                  </p>
-                  <h3 className="font-[family-name:var(--font-serif)] text-[clamp(28px,3vw,44px)] font-normal uppercase tracking-[-0.04em] leading-[1] text-[#f4f1e8] mt-2">
-                    {loc.city}
-                  </h3>
-                  <p className="font-[family-name:var(--font-inter)] text-[13px] font-medium uppercase tracking-[0.08em] text-[rgba(244,241,232,0.82)] mt-4">
-                    {loc.role}
-                  </p>
-                  <p className="font-[family-name:var(--font-inter)] text-[14px] font-normal leading-[1.5] tracking-[-0.01em] text-[rgba(244,241,232,0.66)] mt-3">
-                    {loc.note}
-                  </p>
-                  <p className="font-[family-name:var(--font-inter)] text-[12px] font-normal leading-[1.4] tracking-[-0.01em] text-[rgba(244,241,232,0.5)] mt-6">
-                    {loc.address}
-                  </p>
+            <div className="grid grid-cols-1 md:grid-cols-[58fr_42fr] gap-8 lg:gap-12 mt-12 lg:mt-16 items-stretch">
+              {/* India — the product (primary) */}
+              <div className="border-l-2 border-[rgba(201,169,110,0.4)] pl-6 md:pl-8 flex flex-col">
+                <p className="font-[family-name:var(--font-inter)] text-[11px] uppercase tracking-[0.18em] text-[rgba(244,241,232,0.55)]">
+                  India · North NCR
+                </p>
+                <h3 className="font-[family-name:var(--font-serif)] text-[clamp(30px,3.4vw,52px)] font-normal uppercase tracking-[-0.04em] leading-[1] text-[#f4f1e8] mt-2">
+                  Where We Build
+                </h3>
+                <p className="font-[family-name:var(--font-inter)] text-[14px] font-normal leading-[1.55] tracking-[-0.01em] text-[rgba(244,241,232,0.7)] mt-4 max-w-[440px]">
+                  DTCP-approved residential plots, villa floors, and commercial
+                  spaces near NH-344P in Kharkhoda, Sonipat — the homes and land
+                  Gulf families come back to.
+                </p>
+                <p className="font-[family-name:var(--font-inter)] text-[12px] font-normal leading-[1.4] tracking-[-0.01em] text-[rgba(244,241,232,0.5)] mt-auto pt-8">
+                  NH-344P, Kharkhoda, Sonipat, Haryana
+                </p>
+              </div>
+
+              {/* Abu Dhabi — the Gulf desk (supporting) */}
+              <div className="bg-[rgba(244,241,232,0.06)] backdrop-blur-2xl border border-[rgba(244,241,232,0.15)] rounded-lg p-8 lg:p-10 flex flex-col">
+                <p className="font-[family-name:var(--font-inter)] text-[11px] uppercase tracking-[0.18em] text-[rgba(201,169,110,0.85)]">
+                  UAE · Abu Dhabi
+                </p>
+                <h3 className="font-[family-name:var(--font-serif)] text-[clamp(26px,2.6vw,38px)] font-normal uppercase tracking-[-0.03em] leading-[1.05] text-[#f4f1e8] mt-2">
+                  Where We Meet Gulf Investors
+                </h3>
+                <p className="font-[family-name:var(--font-inter)] text-[14px] font-normal leading-[1.55] tracking-[-0.01em] text-[rgba(244,241,232,0.7)] mt-4">
+                  A point of contact in the Gulf for buying back home —
+                  shortlisting plots, walking through the paperwork, and
+                  coordinating every step with our India team, without the trip
+                  back.
+                </p>
+
+                <div className="flex flex-wrap gap-2 mt-6">
+                  {[
+                    "In-person Gulf meetings",
+                    "Documentation & POA",
+                    "Remote site walkthroughs",
+                    "Property & facilities management",
+                  ].map((chip) => (
+                    <span
+                      key={chip}
+                      className="font-[family-name:var(--font-inter)] text-[10px] uppercase tracking-[0.12em] text-[rgba(244,241,232,0.72)] border border-[rgba(201,169,110,0.35)] rounded-full px-3 py-1"
+                    >
+                      {chip}
+                    </span>
+                  ))}
                 </div>
-              ))}
+
+                <p className="font-[family-name:var(--font-inter)] text-[12px] font-normal leading-[1.4] tracking-[-0.01em] text-[rgba(244,241,232,0.5)] mt-auto pt-8">
+                  1101 Bin Ghanem Tower, Abu Dhabi — P.O. Box 6925
+                </p>
+              </div>
             </div>
+
+            <a
+              href="#contact"
+              className="inline-block mt-10 lg:mt-12 font-[family-name:var(--font-inter)] text-[12px] tracking-[0.08em] uppercase text-[#f4f1e8] border-b border-[rgba(201,169,110,0.5)] pb-1 hover:border-[#c9a96e] transition-colors duration-300"
+            >
+              Visiting from the UAE? Book a call →
+            </a>
           </div>
         </section>
 
