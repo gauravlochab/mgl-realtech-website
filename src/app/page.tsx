@@ -676,48 +676,32 @@ export default function Home() {
           <div className="absolute inset-0 bg-[rgba(11,20,17,0.35)]" />
 
           <div className="relative z-10 max-w-[1400px] mx-auto px-5 md:px-[6vw]">
-            {/* Row 1: 2 frosted cards + body text on right */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6 items-start">
-              {/* Card 1 */}
-              <div className="bg-[rgba(244,241,232,0.1)] backdrop-blur-2xl border border-[rgba(244,241,232,0.15)] rounded-lg p-8 min-h-[240px] flex flex-col justify-center text-center">
-                <h3 className="font-[family-name:var(--font-serif)] text-[20px] font-normal uppercase tracking-[0.02em] leading-tight text-[#f4f1e8] mb-3">
-                  {BELIEFS[0].title}
-                </h3>
-                <p className="font-[family-name:var(--font-inter)] text-[13px] font-normal text-[rgba(244,241,232,0.76)] leading-[1.22] tracking-[-0.01em]">
-                  {BELIEFS[0].desc}
-                </p>
-              </div>
-              {/* Card 2 */}
-              <div className="bg-[rgba(244,241,232,0.1)] backdrop-blur-2xl border border-[rgba(244,241,232,0.15)] rounded-lg p-8 min-h-[240px] flex flex-col justify-center text-center">
-                <h3 className="font-[family-name:var(--font-serif)] text-[20px] font-normal uppercase tracking-[0.02em] leading-tight text-[#f4f1e8] mb-3">
-                  {BELIEFS[1].title}
-                </h3>
-                <p className="font-[family-name:var(--font-inter)] text-[13px] font-normal text-[rgba(244,241,232,0.76)] leading-[1.22] tracking-[-0.01em]">
-                  {BELIEFS[1].desc}
-                </p>
-              </div>
-              {/* Body text — right column */}
-              <div className="pt-4">
-                <p className="font-[family-name:var(--font-inter)] text-[13px] font-normal leading-[1.22] tracking-[-0.01em] text-[rgba(244,241,232,0.76)]">
-                  At MGL Realtech, we believe that a home is more than a physical space. It is a reflection of your aspirations, well-being, and values.
-                </p>
-                <p className="font-[family-name:var(--font-inter)] text-[13px] font-normal leading-[1.22] tracking-[-0.01em] text-[rgba(244,241,232,0.76)] mt-4">
-                  Our mission is to build developments that balance quality construction, community connection, and lasting value.
-                </p>
-              </div>
+            {/* Intro — eyebrow + heading + mission copy (lifted out of the grid) */}
+            <div className="max-w-[720px]">
+              <p className="font-[family-name:var(--font-serif)] italic text-[20px] font-normal tracking-[-0.04em] text-[rgba(244,241,232,0.82)] mb-6">
+                (Our Beliefs)
+              </p>
+              <h2 className="font-[family-name:var(--font-serif)] text-[clamp(42px,6vw,82px)] font-normal uppercase tracking-[-0.05em] leading-[0.92] text-[#f4f1e8]">
+                A Vision of Inspired Living
+              </h2>
+              <p className="font-[family-name:var(--font-inter)] text-[14px] font-normal leading-[1.5] tracking-[-0.01em] text-[rgba(244,241,232,0.82)] mt-6">
+                At MGL Realtech, we believe that a home is more than a physical space. It is a reflection of your aspirations, well-being, and values.
+              </p>
+              <p className="font-[family-name:var(--font-inter)] text-[14px] font-normal leading-[1.5] tracking-[-0.01em] text-[rgba(244,241,232,0.82)] mt-4">
+                Our mission is to build developments that balance quality construction, community connection, and lasting value.
+              </p>
             </div>
 
-            {/* Number labels for row 1 */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6 mt-2">
-              <p className="font-[family-name:var(--font-serif)] text-[13px] text-[rgba(244,241,232,0.4)]">( 1 )</p>
-              <p className="font-[family-name:var(--font-serif)] text-[13px] text-[rgba(244,241,232,0.4)]">( 2 )</p>
-              <div />
-            </div>
-
-            {/* Row 2: 3 frosted cards */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6 mt-8 border-t border-[rgba(244,241,232,0.1)] pt-8">
-              {BELIEFS.slice(2).map((b, i) => (
-                <div key={i} className="bg-[rgba(244,241,232,0.1)] backdrop-blur-2xl border border-[rgba(244,241,232,0.15)] rounded-lg p-8 min-h-[220px] flex flex-col justify-center text-center">
+            {/* Belief tiles — balanced 3 + 2 centered, numbers inside each card */}
+            <div className="flex flex-wrap justify-center gap-5 lg:gap-6 mt-12 lg:mt-16">
+              {BELIEFS.map((b, i) => (
+                <div
+                  key={i}
+                  className="bg-[rgba(244,241,232,0.1)] backdrop-blur-2xl border border-[rgba(244,241,232,0.15)] rounded-lg p-8 min-h-[240px] basis-full md:basis-[calc(33.333%-1rem)] flex flex-col justify-center text-center"
+                >
+                  <p className="font-[family-name:var(--font-serif)] text-[13px] text-[rgba(244,241,232,0.4)] mb-3">
+                    ( {i + 1} )
+                  </p>
                   <h3 className="font-[family-name:var(--font-serif)] text-[20px] font-normal uppercase tracking-[0.02em] leading-tight text-[#f4f1e8] mb-3">
                     {b.title}
                   </h3>
@@ -726,13 +710,6 @@ export default function Home() {
                   </p>
                 </div>
               ))}
-            </div>
-
-            {/* Number labels for row 2 */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6 mt-2">
-              <p className="font-[family-name:var(--font-serif)] text-[13px] text-[rgba(244,241,232,0.4)]">( 3 )</p>
-              <p className="font-[family-name:var(--font-serif)] text-[13px] text-[rgba(244,241,232,0.4)]">( 4 )</p>
-              <p className="font-[family-name:var(--font-serif)] text-[13px] text-[rgba(244,241,232,0.4)]">( 5 )</p>
             </div>
           </div>
         </section>
