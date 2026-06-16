@@ -219,16 +219,21 @@ export default function Home() {
     // === STAT COUNTER ===
     gsap.utils.toArray<HTMLElement>(".gsap-counter").forEach((el) => {
       const target = parseInt(el.getAttribute("data-target") || "0");
-      gsap.to(el, {
-        scrollTrigger: { trigger: el, start: "top 80%", once: true },
-        textContent: target,
-        duration: 2,
-        ease: "power2.out",
-        snap: { textContent: 1 },
-        onUpdate: function () {
-          el.textContent = String(Math.round(parseFloat(el.textContent || "0")));
-        },
-      });
+      gsap.fromTo(
+        el,
+        { textContent: 0 },
+        {
+          textContent: target,
+          immediateRender: false, // keep the real number until the count-up runs
+          scrollTrigger: { trigger: el, start: "top 85%", once: true },
+          duration: 2,
+          ease: "power2.out",
+          snap: { textContent: 1 },
+          onUpdate: function () {
+            el.textContent = String(Math.round(parseFloat(el.textContent || "0")));
+          },
+        }
+      );
     });
 
     return () => {
@@ -477,7 +482,7 @@ export default function Home() {
             </div>
 
             {/* Bottom — massive heading */}
-            <h2 className="font-[family-name:var(--font-serif)] text-[clamp(42px,6vw,82px)] font-normal uppercase tracking-[-0.05em] leading-[0.92] text-[#f4f1e8] -mt-[25%] lg:-mt-[35%] relative z-20 max-w-[400px]">
+            <h2 className="font-[family-name:var(--font-serif)] text-[clamp(42px,6vw,82px)] font-normal uppercase tracking-[-0.05em] leading-[0.92] text-[#f4f1e8] mt-10 lg:-mt-[35%] relative z-20 max-w-[400px]">
               <span className="italic tracking-[-0.06em]">Timeless</span>{" "}Design{" "}<span className="italic tracking-[-0.06em]">Purposeful</span>{" "}Development
             </h2>
           </div>
@@ -495,7 +500,7 @@ export default function Home() {
               ].map((s, i) => (
                 <div key={i} className={`py-8 md:py-10 md:px-8 lg:px-10 ${i > 0 ? "md:border-l md:border-[rgba(244,241,232,0.1)]" : ""} ${i >= 2 ? "border-t md:border-t-0 border-[rgba(244,241,232,0.1)]" : ""}`}>
                   <p className="font-[family-name:var(--font-serif)] text-[clamp(56px,7vw,96px)] font-light leading-[0.9] tracking-[-0.04em] text-[#f4f1e8]">
-                    <span className="gsap-counter" data-target={s.target}>0</span>
+                    <span className="gsap-counter" data-target={s.target}>{s.target}</span>
                     <span className="font-[family-name:var(--font-serif)] text-[28px] font-normal ml-1">{s.suffix}</span>
                   </p>
                   <p className="font-[family-name:var(--font-inter)] text-[13px] font-normal leading-[1.18] tracking-[-0.01em] text-[rgba(244,241,232,0.72)] mt-3 max-w-[210px]">
