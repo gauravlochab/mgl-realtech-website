@@ -958,10 +958,16 @@ export default function Home() {
                 (Location)
               </p>
               <p className="font-[family-name:var(--font-inter)] text-[13px] font-normal leading-[1.22] tracking-[-0.01em] text-[#f4f1e8]">
-                NH 344P, Kharkhoda
+                Sector 71, Sonipat
               </p>
               <p className="font-[family-name:var(--font-inter)] text-[13px] font-normal leading-[1.22] tracking-[-0.01em] text-[rgba(244,241,232,0.76)]">
-                Sonipat, Haryana, India
+                Haryana, India
+              </p>
+              <p className="font-[family-name:var(--font-inter)] text-[13px] font-normal leading-[1.22] tracking-[-0.01em] text-[#f4f1e8] mt-4">
+                655, Satya Hive, Basai Road, Sector 102
+              </p>
+              <p className="font-[family-name:var(--font-inter)] text-[13px] font-normal leading-[1.22] tracking-[-0.01em] text-[rgba(244,241,232,0.76)]">
+                Gurugram, Haryana 122006
               </p>
               <p className="font-[family-name:var(--font-inter)] text-[13px] font-normal leading-[1.22] tracking-[-0.01em] text-[#f4f1e8] mt-4">
                 1101, Bin Ghanem Tower, Abu Dhabi
